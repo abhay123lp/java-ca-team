@@ -1,0 +1,15 @@
+c:\documents and settings\a0102857e\my documents\visual studio 2010\Projects\ShoppingCart\ShoppingCart\bin\ShoppingCart.dll
+c:\documents and settings\a0102857e\my documents\visual studio 2010\Projects\ShoppingCart\ShoppingCart\bin\ShoppingCart.pdb
+c:\documents and settings\a0102857e\my documents\visual studio 2010\Projects\ShoppingCart\ShoppingCart\obj\Debug\ResolveAssemblyReference.cache
+c:\documents and settings\a0102857e\my documents\visual studio 2010\Projects\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.dll
+c:\documents and settings\a0102857e\my documents\visual studio 2010\Projects\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.pdb
+C:\Users\deepu\Documents\Visual Studio 2010\shoppingCart\ShoppingCart\ShoppingCart\bin\ShoppingCart.dll
+C:\Users\deepu\Documents\Visual Studio 2010\shoppingCart\ShoppingCart\ShoppingCart\bin\ShoppingCart.pdb
+C:\Users\deepu\Documents\Visual Studio 2010\shoppingCart\ShoppingCart\ShoppingCart\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\deepu\Documents\Visual Studio 2010\shoppingCart\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.dll
+C:\Users\deepu\Documents\Visual Studio 2010\shoppingCart\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.pdb
+C:\Documents and Settings\a0102857e\My Documents\Visual Studio 2008\Projects\shoppingCart\ShoppingCart\bin\ShoppingCart.dll
+C:\Documents and Settings\a0102857e\My Documents\Visual Studio 2008\Projects\shoppingCart\ShoppingCart\bin\ShoppingCart.pdb
+C:\Documents and Settings\a0102857e\My Documents\Visual Studio 2008\Projects\shoppingCart\ShoppingCart\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\a0102857e\My Documents\Visual Studio 2008\Projects\shoppingCart\ShoppingCart\obj\Debug\ShoppingCart.dll
+C:\Documents and Settings\a0102857e\My Documents\Visual Studio 2008\Projects\shoppingCart\ShoppingCart\obj\Debug\ShoppingCart.pdb
