@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<ConneterBean>
-	<driver>com.mysql.jdbc.Driver</driver>
-	<database>jdbc:mysql://localhost:3306/fbs</database>
-	<username>root</username>
-	<password>19910607</password>
-</ConneterBean>
