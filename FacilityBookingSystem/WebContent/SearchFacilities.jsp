@@ -17,7 +17,7 @@
 }
 </style>
 </head>
-<body>
+<body >
 	<form action="SearchFacilityController" name="frmSearchFacilities">
 		<div>
 			<fieldset>
@@ -45,34 +45,37 @@
 		<div>
 			<fieldset>
 				<legend>Search Result</legend>
-
-				<table>
-					<tr>
-						<td></td>
-						<td align="center">Name</td>
-						<td align="center">Usage</td>
-						<td align="center">Type</td>
-						<td align="center">Capacity</td>
-						<td align="center">Description</td>
-					</tr>
-					<c:forEach var="current" items="${facilityAl.get(0).getFacAl()}"
-						varStatus="status">
-						<tr class="${status.index%2==0?'even':'odd'}">
-							<td align="center"><input type="radio" name="group1"
-								value="${current.getFacID()}" /></td>
-							<td>${current.getFacName()}</td>
-							<td>${current.getFacUsage()}</td>
-							<td>${current.getFadcilityTypeName()}</td>
-							<td>${current.getFacilityCapacity()}</td>
-							<td>${current.getFacilityDescription()}</td>
+				   <c:choose>
+  					<c:when test="${!facilityAl.get(0).getFacAl().equals(null)}">			
+					<table>
+						<tr>
+							<td></td>
+							<td align="center">Name</td>
+							<td align="center">Usage</td>
+							<td align="center">Type</td>
+							<td align="center">Capacity</td>
+							<td align="center">Description</td>
 						</tr>
-					</c:forEach>
-					<tr>
-						<td colspan="6" align="center"><input type="submit"
-							name="btnBooking" value="booking" /></td>
-					</tr>
-				</table>
-
+						<c:forEach var="current" items="${facilityAl.get(0).getFacAl()}"
+							varStatus="status">
+							<tr class="${status.index%2==0?'even':'odd'}">
+								<td align="center"><input type="radio" name="group1"
+									value="${current.getFacID()}" /></td>
+								<td>${current.getFacName()}</td>
+								<td>${current.getFacUsage()}</td>
+								<td>${current.getFadcilityTypeName()}</td>
+								<td>${current.getFacilityCapacity()}</td>
+								<td>${current.getFacilityDescription()}</td>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td colspan="6" align="center"><input type="submit"
+								name="btnBooking" value="booking" /></td>
+						</tr>
+					</table>
+				</c:when>
+				  <c:otherwise><c:out value="No Result Found"></c:out></c:otherwise>
+				  </c:choose>
 			</fieldset>
 		</div>
 	</form>
