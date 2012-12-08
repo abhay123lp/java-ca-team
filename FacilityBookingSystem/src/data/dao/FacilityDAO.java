@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import data.dto.Facility;
+import data.dto.FacilityType;
 import exception.NotFoundException;
 
 public interface FacilityDAO {
@@ -17,4 +18,5 @@ public interface FacilityDAO {
 	void deleteAllFacilities() throws SQLException;
 	int countFacility() throws SQLException;
 	List<Facility> searchMatching(Facility facility) throws SQLException;
+	List<Facility> getAllFacilitiesbySearchCriteria(FacilityType ft) throws SQLException;
 }
