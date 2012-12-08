@@ -108,11 +108,11 @@ public class SearchFacilityController extends HttpServlet {
 				}
 			} else {
 				RequestDispatcher rd = request
-						.getRequestDispatcher("/SearchFacilities.jsp");
+						.getRequestDispatcher("/login.jsp");
 			}
 		} else {
 			RequestDispatcher rd = request
-					.getRequestDispatcher("/SearchFacilities.jsp");
+					.getRequestDispatcher("/login.jsp");
 		}
 	}
 
