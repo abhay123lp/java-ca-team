@@ -5,6 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<table>
+	<tr>
+		<td><img src="logo.gif"></td>
+	</tr>
+</table>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="<c:url value='css/style.css'/>" rel="stylesheet"
@@ -31,15 +36,15 @@
 	<br />
 	<table class="borderAll">
 		<tr>
-			<th>#</th>
+			<th width="%10">#</th>
 			<th><fmt:message key="label.User.UserID" /></th>
 			<th><fmt:message key="label.User.UserPSW" /></th>
 			<th><fmt:message key="label.User.UserName" /></th>
 			<th><fmt:message key="label.User.Role" /></th>
 			<th><fmt:message key="label.User.ContactNo" /></th>
 			<th><fmt:message key="label.User.EmailAddress" /></th>
-			<th><fmt:message key="label.User.edit" />
-			<fmt:message key="label.User.delete" /></th>
+			<th><fmt:message key="label.User.edit" /> <fmt:message
+					key="label.User.delete" /></th>
 		</tr>
 
 		<c:forEach var="User" items="${UserTable}" varStatus="status">
@@ -60,13 +65,13 @@
 						<c:param name="ContactNo" value="${User.contactNo}" />
 						<c:param name="EmailAddress" value="${User.emailAddress}" />
 						<c:param name="update" value="true" />
-						
+
 					</c:url> <a href="${updurl}  "><fmt:message key="label.User.edit" /></a>
-					&nbsp;&nbsp;&nbsp; 
-					<c:url var="delurl" scope="page" value="/deleteUser">
+					&nbsp;&nbsp;&nbsp; <c:url var="delurl" scope="page"
+						value="/deleteUser">
 						<c:param name="UserID" value="${User.userID}" />
 					</c:url> <a href="${delurl}"><fmt:message key="label.User.delete" /></a></td>
-					
+
 			</tr>
 		</c:forEach>
 	</table>
