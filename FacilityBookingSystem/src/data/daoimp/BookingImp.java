@@ -1,6 +1,7 @@
 package data.daoimp;
-
+import data.EnumPriority;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import data.dao.BookingDAO;
 import data.dto.Booking;
 import exception.NotFoundException;
 
+@SuppressWarnings("unused")
 public class BookingImp extends BaseConnection implements BookingDAO{
 	public Booking createValueObject() {
         return new Booking();
@@ -59,6 +61,13 @@ public class BookingImp extends BaseConnection implements BookingDAO{
 
       return searchResults;
   }
+  public List<Booking> loadAllByFacilityIDMon(String facilityID,java.sql.Date sDate,java.sql.Date eDate) throws SQLException {
+
+      String sql =  "SELECT * FROM Bookings WHERE FacID = '"+facilityID+"'and StartTime  BETWEEN "+sDate+"AND"+eDate+"OR EndTime BETWEEN "+sDate+"AND"+eDate;
+      List<Booking> searchResults = listQuery(conn.prepareStatement(sql));
+
+      return searchResults;
+  }
   public List<Booking> loadAllByUserID(String userID) throws SQLException {
 
       String sql = "SELECT * FROM Bookings WHERE UserID = '"+userID+"' ORDER BY BookingID ASC ";
@@ -66,6 +75,22 @@ public class BookingImp extends BaseConnection implements BookingDAO{
 
       return searchResults;
   }
+  public List<Booking> loadAllByUserID(String userID,java.sql.Date sDate,java.sql.Date eDate) throws SQLException {
+
+      String sql = "SELECT * FROM Bookings WHERE UserID = '"+userID+"'and StartTime  BETWEEN "+sDate+"AND"+eDate+"OR EndTime BETWEEN "+sDate+"AND"+eDate;;
+      List<Booking> searchResults = listQuery(conn.prepareStatement(sql));
+
+      return searchResults;
+  }
+  
+  public List<Booking> loadAllByUserID(String userID,java.sql.Date sDate,java.sql.Date eDate,String p) throws SQLException {
+
+      String sql = "SELECT * FROM Bookings WHERE UserID = '"+userID+"'and StartTime  BETWEEN "+sDate+"AND"+eDate+"OR EndTime BETWEEN "+sDate+"AND"+eDate+"And Priority = "+p;
+      List<Booking> searchResults = listQuery(conn.prepareStatement(sql));
+
+      return searchResults;
+  }
+ 
   public List<Booking> loadAllByStatus(String status) throws SQLException {
 
       String sql = "SELECT * FROM Bookings WHERE BookStatus = '"+status+"' ORDER BY BookingID ASC ";
@@ -369,3 +394,4 @@ public class BookingImp extends BaseConnection implements BookingDAO{
         return searchResults;
   }
 }
+
