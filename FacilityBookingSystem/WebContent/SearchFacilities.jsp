@@ -18,7 +18,7 @@
 </style>
 </head>
 <body >
-	<form action="SearchFacilityController" name="frmSearchFacilities">
+	<form action="/FacilityBookingSystem/SearchFacilityController" method="post">
 		<div>
 			<fieldset>
 				<legend>Search Facility</legend>
