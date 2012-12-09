@@ -20,4 +20,56 @@
   	<servlet-name>login</servlet-name>
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
+  <servlet>
+		<description>
+		</description>
+		<display-name>UserLoad
+		</display-name>
+		<servlet-name>UserLoad</servlet-name>
+		<servlet-class>controller.UserLoad
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserLoad</servlet-name>
+		<url-pattern>/UserLoad</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description>
+		</description>
+		<display-name>UserProcessServlet
+		</display-name>
+		<servlet-name>UserProcessServlet</servlet-name>
+		<servlet-class>controller.UserProcessServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserProcessServlet</servlet-name>
+		<url-pattern>/UserProcessServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DeleteUserServlet</display-name>
+		<servlet-name>DeleteUserServlet</servlet-name>
+		<servlet-class>controller.DeleteUserServlet
+		</servlet-class>
+	</servlet>
+		<servlet-mapping>
+		<servlet-name>DeleteUserServlet</servlet-name>
+		<url-pattern>/deleteUser</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description>
+		</description>
+		<display-name>SearchUserServlet</display-name>
+		<servlet-name>SearchUserServlet</servlet-name>
+		<servlet-class>controller.SearchUserServlet
+		</servlet-class>
+	</servlet>
+		<servlet-mapping>
+		<servlet-name>SearchUserServlet</servlet-name>
+		<url-pattern>/SearchUserServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
