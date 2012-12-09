@@ -275,7 +275,7 @@ public class UserImp extends BaseConnection implements UserDAO{
 
 			} else {
 				// System.out.println("User Object Not Found!");
-				throw new NotFoundException("User Object Not Found!");
+				return;
 			}
 		} finally {
 			if (result != null)
