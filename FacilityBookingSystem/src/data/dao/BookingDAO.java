@@ -1,6 +1,7 @@
 package data.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,7 +14,9 @@ public interface BookingDAO {
 	void load(Booking valueObject) throws NotFoundException, SQLException;
 	List<Booking> loadAll() throws SQLException;
 	List<Booking> loadAllByFacilityID(String facilityID) throws SQLException;
+	List<Booking> loadAllByFacilityIDMon(String facilityID,java.sql.Date sDate,java.sql.Date eDate) throws SQLException;
 	List<Booking> loadAllByUserID(String userID) throws SQLException;
+	List<Booking> loadAllByUserID(String userID,java.sql.Date sDate,java.sql.Date eDate) throws SQLException;
 	List<Booking> loadAllByStatus(String status) throws SQLException;
 	List<Booking> loadAllByTime(java.sql.Date date) throws SQLException;
 	List<Booking> loadAllByPriority(String priority) throws SQLException;
@@ -27,4 +30,6 @@ public interface BookingDAO {
 	List<Booking> searchMatching(Booking valueObject) throws SQLException;
 	String generateNewBookingID() throws SQLException;
 	java.sql.Date generateSQLDate(java.util.Date date);
+	List<Booking> loadAllByUserID(String userID, Date fdate, Date ldate,
+			String priority) throws SQLException;
 }
