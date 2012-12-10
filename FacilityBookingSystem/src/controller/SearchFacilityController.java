@@ -95,7 +95,7 @@ public class SearchFacilityController extends HttpServlet {
 					sf.setFacAL(FindFacility(ft));
 					cal.add(sf);
 					request.setAttribute("facilityAl", cal);
-					rd.include(request, response);
+					rd.forward(request, response);
 				} else {
 					if (searchbtnClick != null) {
 						if (searchbtnClick.equals("search")) {
@@ -109,10 +109,12 @@ public class SearchFacilityController extends HttpServlet {
 			} else {
 				RequestDispatcher rd = request
 						.getRequestDispatcher("/login.jsp");
+				rd.forward(request, response);
 			}
 		} else {
 			RequestDispatcher rd = request
 					.getRequestDispatcher("/login.jsp");
+			rd.forward(request, response);
 		}
 	}
 
@@ -142,11 +144,11 @@ public class SearchFacilityController extends HttpServlet {
 			String s2 = sf.getFacAl().get(0).getFacilityDescription();
 			String s3 = sf.getFacAl().get(0).getFadcilityTypeName();
 			request.setAttribute("facilityAl", cl);
-			rd.include(request, response);
+			rd.forward(request, response);
 
 		} else {
 			request.setAttribute("error", "Please enter digit for capacity");
-			rd.include(request, response);
+			rd.forward(request, response);
 		}
 
 	}
