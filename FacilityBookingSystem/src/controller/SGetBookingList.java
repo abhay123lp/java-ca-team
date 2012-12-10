@@ -61,6 +61,7 @@ public class SGetBookingList extends HttpServlet {
 	protected void doMyProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String op = request.getParameter("op");
+		if(op == null) op ="current";
 		List<Booking> resultlist = null;
 		BookingDAO bd = DAOFactory.getBookingDAO();
 		User user = (User)request.getSession().getAttribute("myUser");
@@ -93,12 +94,28 @@ public class SGetBookingList extends HttpServlet {
 				request.setAttribute("error", "You have not the roght to operate!");
 				request.getRequestDispatcher(fowardTo).forward(request, response);
 			}
+			this.doGenerateMenu(user,request, response);
 		} catch(SQLException e){
 			String fowardTo = "Error.jsp";
 			request.setAttribute("error", e.getMessage());
 			request.getRequestDispatcher(fowardTo).forward(request, response);
 		}
 		request.setAttribute("booklist", resultlist);
+	}
+	
+	protected void doGenerateMenu(User user,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int menuLevel = 0;
+		if(  user.getRole().equals(EnumUserRole.Administrator.toString())  ){
+			menuLevel = 1;
+		}
+		else if(  user.getRole().equals(EnumUserRole.Staff.toString())  ){
+			menuLevel = 2;
+		}
+		else if(  user.getRole().equals(EnumUserRole.Manager.toString())  ){
+			menuLevel = 3;
+		}
+		else menuLevel = 0;
+		request.setAttribute("menuLevel", menuLevel);
 	}
 
 }

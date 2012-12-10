@@ -4,18 +4,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View Booking</title>
+<title>View BookingList Page</title>
 </head>
 <body>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<jsp:include page="/SGBL" >
 		<jsp:param name="initial" value="0" />
 	</jsp:include>
+	<jsp:include page="home.jsp"></jsp:include>
 	<table>
 		<tr>
-			<td><a href="Navigation.jsp"><img src="logo.gif"></a></td>
-		</tr>
-		<tr>
+			<td id="submenu" style="vertical-align:top;">
+			<c:if test="${requestScope.menuLevel > 0}">
+				<div><a href="BookingList.jsp?op=current">View current booking</a></div></c:if>
+			<c:if test="${requestScope.menuLevel > 1}">
+				<div><a href="BookingList.jsp?op=history">View booking history</a></div>
+				<div><a href="BookingList.jsp?op=cancel">Cancel your booking</a></div></c:if>
+			<c:if test="${requestScope.menuLevel > 2}">
+				<div><a href="BookingList.jsp?op=pending">Approve/Reject booking</a></div></c:if>
+			</td>
 			<td>
 				<table id="booklist">
 					<tr>

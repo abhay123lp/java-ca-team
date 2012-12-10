@@ -18,10 +18,8 @@
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<jsp:include page="/SLoadBookInfo" >
 		<jsp:param name="initial" value="0" />
-	</jsp:include>
-	
-	
-<a href="Navigation.jsp"><img src="logo.gif"></a><br>
+	</jsp:include>	
+	<jsp:include page="home.jsp"></jsp:include>
 
 <c:url var="actionLink" value="/SOPB">
 	<c:param name="op" value="${param.op}"/>
@@ -30,7 +28,7 @@
 
 <form action="${actionLink}" method="post" name="detailsbookgForm">
 <h2>Basic information - ${booking.bookingID}</h2>
-<div id="errorregion">
+<div id="errorregion" style="color: red">
 <c:choose>
 	<c:when test="${requestScope.badbooking==1}">
 		There are some conflicts in your booking:<br>
@@ -43,16 +41,41 @@
 </c:choose>
 </div>
 
-<table id="booktable" border="1">
+<table id="booktable">
 <tr>
 <th>BookingID : </th><td>${booking.bookingID}</td>
 <th>Priority : </th>
 <c:choose>
 	<c:when test="${requestScope.update==1}">
-		<td><input type="text" name="priority" value="${booking.priority}"/></td>
+		<td>
+			<select name="priority">
+			<c:if test="${booking.priority=='H'}">
+				<option value="H" selected="selected">High</option>
+				<option value="M" >Medium</option>
+				<option value="L" >Low</option>
+			</c:if>
+			<c:if test="${booking.priority=='M'}">
+				<option value="H" >High</option>
+				<option value="M" selected="selected">Medium</option>
+				<option value="L" >Low</option>
+			</c:if>
+			<c:if test="${booking.priority=='L'}">
+				<option value="H" >High</option>
+				<option value="M" >Medium</option>
+				<option value="L" selected="selected">Low</option>
+			</c:if>
+			</select>
+		</td>
 	</c:when>
 	<c:otherwise>
-		<td>${booking.priority}</td>
+		<td>
+			<c:choose>
+			<c:when test="${booking.priority=='H'}">High</c:when>
+			<c:when test="${booking.priority=='M'}">Medium</c:when>
+			<c:when test="${booking.priority=='L'}">Low</c:when>
+			<c:otherwise>Invalidate priority!</c:otherwise>
+			</c:choose>
+		</td>
 	</c:otherwise>
 </c:choose>
 </tr>
@@ -67,7 +90,10 @@
 			        trigger    : "f_pickS",
 			        onSelect   : function() { this.hide()},
 			        disabled   : function(date) {
-	                      return (date.getDay() == 0 || date.getDay() == 6);
+			        	  var today = new Date();
+			        	  if(date.getDay() == 0 || date.getDay() == 6) return true;
+			        	  else if(date <= today) return true;
+			        	  else return false;
 	              	},
 	              	fdow	   : 0,
 			        dateFormat : "%Y-%m-%d"
@@ -92,7 +118,13 @@
 			        trigger    : "f_pickE",
 			        onSelect   : function() { this.hide()},
 			        disabled   : function(date) {
-	                      return (date.getDay() == 0 || date.getDay() == 6);
+			        	  var str = document.getElementById("s_d").value;
+			        	  var stdt=new Date(str.replace("-","/"));
+			        	  var today = new Date();
+			        	  if(date.getDay() == 0 || date.getDay() == 6) return true;
+			        	  else if(date <= today) return true;
+			        	  else if(date <= stdt) return true;
+			        	  else return false;
 	              	},
 	              	fdow	   : 0,
 			        dateFormat : "%Y-%m-%d"
@@ -116,7 +148,7 @@
 	</c:when>
 	<c:otherwise>
 		<td colspan="3"><textarea rows="10" name="reason" readonly="readonly" 
-		style= "background:transparent;border-style:none;width:100%">${booking.reason}</textarea></td>
+		style= "background:transparent;width:100%">${booking.reason}</textarea></td>
 	</c:otherwise>
 </c:choose>
 </tr>
@@ -124,7 +156,7 @@
 
 
 <h2>Book user information</h2>
-<table id="usertable" border="1">
+<table id="usertable">
 <tr>
 <th>User ID : </th><td>${user.userID}</td>
 <th>User Name : </th><td>${user.userName}</td>
@@ -138,21 +170,21 @@
 
 
 <h2>Booked facility information</h2>
-<table id="facilitytable" border="1"><tr>
+<table id="facilitytable"><tr>
 <th>FacilityID : </th><td>${facility.facID}</td>
 <th>Facility Name : </th><td>${facilitytype.typeName} - ${facility.facName}</td><th>Capacity : </th><td>${facilitytype.capacity}</td>
 </tr><tr>
 <th>Description : </th>
 <td colspan="5">
 <textarea rows="10" cols="20" name="description" readonly="readonly" 
-	style= "background:transparent;border-style:none;width:100%">
+	style= "background:transparent;width:100%">
 ${facilitytype.desicription}</textarea>
 </tr>
 <tr>
 <th>Notes : </th>
 <td colspan="5">
 <textarea rows="10" cols="20" name="description" readonly="readonly" 
-	style= "background:transparent;border-style:none;width:100%">
+	style= "background:transparent;width:100%">
 The facility have reserved.If you want to change facility please check the available of the facility and make a booking.Thanks your cooperation!</textarea>
 </tr>
 </table>
