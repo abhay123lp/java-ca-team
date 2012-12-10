@@ -17,4 +17,5 @@ public interface FacilityTypeDAO {
 	void deleteAllFacilityType() throws SQLException;
 	int countFacilityType() throws SQLException;
 	List<FacilityType> searchMatching(FacilityType facilityType) throws SQLException;
+	FacilityType findFacilityTypeByName(String typeName) throws NotFoundException,SQLException;
 }
