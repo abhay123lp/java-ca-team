@@ -1,4 +1,4 @@
-package data;
+package data.dto;
 
 public enum EnumPriority {
 	High("H"),Medium("M"),Low("L");
