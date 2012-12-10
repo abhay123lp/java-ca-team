@@ -1,4 +1,4 @@
-package data;
+package data.dto;
 
 public enum EnumUserRole {
 	Administrator("Admin"),Manager("Manage"),Staff("Staff");
