@@ -30,7 +30,7 @@ function check()
 <form id="login" action="login"  method="post" name="login" >
 	
 	<center>
-	<img src="logo.gif">
+	<img src="images/logo.gif">
 		<table>
 			<tr> 
 				<td height="60"></td>
