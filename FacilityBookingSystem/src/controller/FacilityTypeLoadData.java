@@ -45,8 +45,7 @@ public class FacilityTypeLoadData extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 	
-	private void processRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void processRequest(HttpServletRequest request,HttpServletResponse response) {
 
 		if (request.getSession().getAttribute("myUser") != null) {
 			User user = new User();
@@ -56,7 +55,7 @@ public class FacilityTypeLoadData extends HttpServlet {
 				ArrayList<FacilityType> typedata = ftm.findAllFacilityType();
 				request.setAttribute("facilityType", typedata);
 				RequestDispatcher rdpt = request
-						.getRequestDispatcher("FacilityTypeCUD.jsp");
+						.getRequestDispatcher("/FacilityTypeCUD.jsp");
 				try {
 					rdpt.forward(request, response);
 				} catch (ServletException se) {
