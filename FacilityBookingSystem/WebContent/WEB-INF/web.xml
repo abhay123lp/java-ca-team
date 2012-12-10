@@ -92,7 +92,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SLoadBookInfo</servlet-name>
-		<url-pattern>/SLoadBookI </url-pattern>
+		<url-pattern>/SLoadBookInfo </url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ViewBookingReport</servlet-name>
