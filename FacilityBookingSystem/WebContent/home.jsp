@@ -50,11 +50,13 @@
 					Welcome: ${sessionScope.myUser.userName }
 					<br>
 					Role: ${sessionScope.myUser.role }
-					<br>
-					&nbsp;&nbsp;&nbsp;&nbsp;    
+					<br>    
+					<c:url var="logouturl" scope="page" value="login.jsp">
+						<c:param name="InOut" value="false"></c:param>
+					</c:url>
+					<a href="${logouturl}">Logout</a>
 					
-					<a href="/?InOut=true">Logout</a>
-					<input type="hidden" value="false" name="InOut" /> 
+					
 			</div>
 		</div>
 		<div id="menu">
