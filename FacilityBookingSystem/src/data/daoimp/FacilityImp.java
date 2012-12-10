@@ -331,4 +331,24 @@ public class FacilityImp extends BaseConnection implements FacilityDAO {
 		stmt.close();
 		return searchResults;
 	}
+
+	@Override
+	public Facility findFacilityName(String facName) throws SQLException {		
+		
+		String sql = "SELECT * FROM Facility WHERE (FacID = ? ) ";
+		PreparedStatement stmt = null;
+
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1,facName);
+			List<Facility> searchResults = listQuery(stmt);
+			if (stmt != null)
+				stmt.close();
+			return searchResults.get(0);
+
+		} finally {
+			if (stmt != null)
+				stmt.close();
+		}
+	}
 }
