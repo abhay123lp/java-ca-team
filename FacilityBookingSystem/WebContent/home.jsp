@@ -6,38 +6,61 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/style.css"></style>
 <title>Insert title here</title>
+
 </head>
 <body>
 	<form action="login" method="post">
-		<center>
-			<table border="2">
-				<tr>
-					<td colspan="2"><fmt:message key="title"></fmt:message></td>
-					<td>Welcome: <%=session.getAttribute("myUserName")%> <br>
-						Root: <%=session.getAttribute("myUserRole") %> <br> <input
-						type="submit" name="submit" value="Logout" /> <input
-						type="hidden" name="InOut" value="false" />
-					</td>
-				</tr>
-				<tr>
-					<td rowspan="2" width="200" height="350">
-						<ul>
-							<c:forEach var="menuItem" items="${sessionScope.menu}">
-								<li><a href="${menuItem}.jsp">${menuItem}</a></li>
-							</c:forEach>
-						</ul>
-					</td>
-					<td width="420">Operation Area</td>
-				</tr>
-				<tr>
+		<%-- 		<center> --%>
+		<!-- 			<table border="2"> -->
+		<!-- 				<tr> -->
+		<%-- 					<td colspan="2"><fmt:message key="title"></fmt:message></td> --%>
+		<%-- 					<td>Welcome: <%=session.getAttribute("myUserName")%> <br> --%>
+		<%-- 						Root: <%=session.getAttribute("myUserRole") %> <br> <input --%>
+		<!-- 						type="submit" name="submit" value="Logout" /> <input -->
+		<!-- 						type="hidden" name="InOut" value="false" /> -->
+		<!-- 					</td> -->
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
+		<!-- 					<td rowspan="2" width="200" height="350"> -->
+		<!-- 						<ul> -->
+		<%-- 							<c:forEach var="menuItem" items="${sessionScope.menu}"> --%>
+		<%-- 								<li><a href="${menuItem}.jsp">${menuItem}</a></li> --%>
+		<%-- 							</c:forEach> --%>
+		<!-- 						</ul> -->
+		<!-- 					</td> -->
+		<!-- 					<td width="420">Operation Area</td> -->
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
 
-				</tr>
-				<tr>
-					<td colspan="2">ISS NUS</td>
-				</tr>
-			</table>
-		</center>
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
+		<!-- 					<td colspan="2">ISS NUS</td> -->
+		<!-- 				</tr> -->
+		<!-- 			</table> -->
+		<%-- 		</center> --%>
+		<div id="header">
+			<div id="logo">
+				<h1>
+					<a href="#">Facility Booking System</a>
+				</h1>
+			</div>
+			<div id="userInfo">
+					Welcome: <%=session.getAttribute("myUserName")%><br>
+					Root: <%=session.getAttribute("myUserRole") %> <br>
+			</div>
+		</div>
+		<div id="menu">
+
+			<ul>
+				<c:forEach var="menuItem" items="${sessionScope.menu}">
+					<li><a href="${menuItem}.jsp">${menuItem}</a></li>
+				</c:forEach>
+			</ul>
+			<br class="clearfix" />
+		</div>
+
 	</form>
 </body>
 </html>
