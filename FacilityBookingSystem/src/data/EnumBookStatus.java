@@ -1,7 +1,7 @@
 package data;
 
 public enum EnumBookStatus {
-	Processing("Processing"),Delete("Delete"),Cancel("Cancel"),Approve("Approve"),Rejected("Rejected");
+	Processing("Processing"),Delete("Delete"),Cancel("Cancel"),Approve("Approve"),Rejected("Rejected"),Finish("Finish");
 	private String value;
 	private EnumBookStatus(String st){
 		this.value = st;
