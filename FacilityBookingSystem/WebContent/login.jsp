@@ -7,7 +7,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<fmt:setBundle basename="messages" />
+<fmt:setBundle basename="messagetitle" />
 <title><fmt:message key="title" /></title>
 <script language="JavaScript" src="script/gen_validatorv4.js"
 	type="text/javascript"></script>
