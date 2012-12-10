@@ -64,6 +64,30 @@ public class FacilityTypeLoadData extends HttpServlet {
 				} catch (IOException ie) {
 					ie.printStackTrace();
 				}
+			} else {
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/login.jsp");
+				try {
+					rd.forward(request, response);
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} else {
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/login.jsp");
+			try {
+				rd.forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 
