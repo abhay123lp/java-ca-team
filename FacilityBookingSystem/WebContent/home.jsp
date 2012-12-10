@@ -45,10 +45,16 @@
 				<h1>
 					<a href="#">Facility Booking System</a>
 				</h1>
-			</div>
+			</div>)
 			<div id="userInfo">
-					Welcome: <%=session.getAttribute("myUserName")%><br>
-					Root: <%=session.getAttribute("myUserRole") %> <br>
+					Welcome: ${sessionScope.myUser.userName }
+					<br>
+					Role: ${sessionScope.myUser.role }
+					<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;    
+					
+					<a href="/?InOut=true">Logout</a>
+					<input type="hidden" value="false" name="InOut" /> 
 			</div>
 		</div>
 		<div id="menu">
