@@ -16,6 +16,7 @@ import sun.awt.FocusingTextField;
 
 import business.UserManager;
 
+import data.dto.EnumUserRole;
 import data.dto.User;
 import exception.NotFoundException;
 
@@ -72,12 +73,15 @@ public class SearchUserServlet extends HttpServlet {
 			User user = new User();
 
 			user.setUserName(userName);
+			
 			user.setUserID(userid);
+			String roleString=request.getParameter("Role");
 
-			user.setRole(role);			
+//			user.setRole(role);			
 			user.setContactNo(contactNo);
 			user.setEmailAddress(email);
 			UserManager hm = new UserManager();
+			//EnumUserRole eRole=hm.f
 			List<User> userlist = hm.findUsersByCriteria(user);
 			request.setAttribute("searchlist", userlist);
 			RequestDispatcher rd = request.getRequestDispatcher("/SearchUser.jsp");

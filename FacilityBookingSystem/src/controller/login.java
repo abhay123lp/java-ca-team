@@ -87,8 +87,8 @@ public void doProcess(HttpServletRequest request,HttpServletResponse response) t
 							menu.add("View Booking Status/History");
 							menu.add("Cancel An approved booking");
 							menu.add("Email booking status");
-							menu.add("View pending requests");
-							menu.add("Approve/Reject booking");
+							menu.add("operateBooking");
+							menu.add("BookingList");
 							menu.add("View/Print Monthly Usage");
 							rd=request.getRequestDispatcher("home.jsp");
 						}
