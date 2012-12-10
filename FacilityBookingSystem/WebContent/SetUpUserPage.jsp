@@ -18,7 +18,7 @@
 <c:set var="t" value="true" />
 <script language="JavaScript" src="script/gen_validatorv4.js"
 	type="text/javascript"></script>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
+<link href="<c:url value='css/style.css'/>" rel="stylesheet"
 	type="text/css" />
 
 
@@ -87,9 +87,13 @@
 				<td><input type="text" name="EmailAddress"
 					value="${param['EmailAddress']}" size=15 maxlength=20></td>
 			</tr>
-
+			<tr>
+			<td colspan=4>
+				<div id="userForm_errorloc" class="error_strings"></div>
+				</td>
+			</tr>
 		</table>
-		<div id="userForm_errorloc" class="error_strings"></div>
+
 
 		<input type='image' name='Submit' id='userSubmit' align="left"
 			src='images/SubmitButton.png' alt='submit' class='loading_div' /> <input
@@ -121,12 +125,12 @@
 				" UserPSW scope is ^[A-Za-z]{1,20}$");
 		userFormValidator.addValidation("UserPSW", "neelmnt=UserName",
 				"The password should not be same as username");
-		
+
 		userFormValidator.addValidation("confpassword", "req",
-		" Please fill in the confirm password ");
+				" Please fill in the confirm password ");
 		userFormValidator.addValidation("confpassword", "eqelmnt=UserPSW",
 				"The confirmed password is not same as password");
-		
+
 		userFormValidator.addValidation("UserName", "req",
 				"Please fill in UserName");
 		userFormValidator.addValidation("UserName", "alnum_s");
