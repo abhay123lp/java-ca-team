@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/style.css"></style>
 <title>FacilityBooking System Search Facility</title>
 <style>
 .even {
@@ -17,6 +18,7 @@
 </style>
 </head>
 <body >
+<%@ include file="home.jsp" %>
 	<form action="/SearchFacilityController" method="post">
 		<div >
 			<fieldset>
