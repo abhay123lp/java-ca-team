@@ -6,18 +6,22 @@
 <html>
 <table>
 	<tr>
-		<td><img src="logo.gif"></td>
+		<td><img src="images/logo.gif"></td>
 	</tr>
 </table>
+<script language="JavaScript" src="script/gen_validatorv4.js"
+	type="text/javascript"></script>
+
 <head>
+ <link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <fmt:setBundle basename="messages" />
 <title><fmt:message key="setup.title" /></title>
 <c:set var="t" value="true" />
 </head>
 <body>
-	<form action="UserProcessServlet" method="post"
-		onsubmit="javascript:return validate();">
+	<form name="userForm" id="userForm" action="UserProcessServlet"
+		method="post" class='sfm_form'>
 
 
 		<table cellpadding=5 cellspacing=3 border=1>
@@ -63,54 +67,60 @@
 				<td><input type="text" name="EmailAddress"
 					value="${param['EmailAddress']}" size=15 maxlength=20></td>
 			</tr>
+											
 		</table>
-		&nbsp;&nbsp;&nbsp;<input align="left" type="submit" value="Submit">
-		&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input align="left" type="reset"
-			value="Reset">
+		<div id="userForm_errorloc" class="error_strings"></div>
+		<%--
+		&nbsp;&nbsp;&nbsp;
+		<input align="left" type="submit" value="Submit">
+		
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<input	align="left" type="reset" value="Reset">
+
+		--%>
+			<input align="left" type='image' name='Submit' value="Submit" id='userSubmit'
+				src='images/SubmitButton.png' alt='submit' class='loading_div' />
+				
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input align="left" type='image' name='Reset' value="Reset" id='userRest'
+				src='images/ResetButton.png' alt='reset' />
+		
 	</form>
+	
+	<script language="JavaScript" type='text/javascript'>
+		var userFormValidator = new Validator("userForm");
+		userFormValidator.EnableOnPageErrorDisplaySingleBox();
+		userFormValidator.EnableMsgsTogether();
+		userFormValidator.addValidation("UserID", "required",
+				"Please fill in UserID");
+		userFormValidator.addValidation("UserID", "minlen=7 ",
+				"The user password mininum length is 7");
+		userFormValidator.addValidation("UserID", "alnum ",
+				"The user password mininum length is 7");
+		userFormValidator.addValidation("UserPSW", "required",
+				" Please fill your UserPSW ");
+		<%--userFormValidator.addValidation("UserPSW", "alnum",
+				" UserPSW should be a valid alpha-numeric value");--%>
+		userFormValidator.addValidation("UserPSW", "regexp",
+		" UserPSW scope is ^[A-Za-z]{1,20}$");
+		userFormValidator.addValidation("UserName", "required",
+				"Please fill in UserName");
+		userFormValidator.addValidation("UserName", "alnum_s",
+				"The input for UserName should be a valid alpha-numeric value");
+		userFormValidator.addValidation("Role", "required",
+		"Please fill in the role ");
+	
+		userFormValidator.addValidation("ContactNo", "numeric",
+				"The input for ContactNo should be a valid numeric value");
+		userFormValidator.addValidation("ContactNo", "minlen",
+		"The mininum length of contact no is 7");
+		userFormValidator.addValidation("ContactNo", "required",
+				"Please fill in ContactNo");
+		userFormValidator.addValidation("EmailAddress", "email",
+				" EmailAdddress should be a valid email address");
+		userFormValidator.addValidation("EmailAddress", "required",
+				"Please fill in EmailAdddress");
+	</script>
 
 </body>
-<script>
-	function validate() {
-		var userID = document.form.UserID.value;
-		var userpsw = document.form.UserPSW.value;
-		var userName = document.form.UserName.value;
-		var cotactNo = document.form.ContactNo.value;
-		var email = document.form.EmailAddress.value;
-
-		if (userID == "") {
-			alert("Enter UserID!");
-			document.form.UserID.focus();
-			return false;
-		} else {
-			document.form.UserPSW.focus();
-			document.form.UserPSW.disabled = false;
-			if (userpsw == "") {
-				alert("Enter User password!");
-				return false;
-			} else {
-				document.form.userName.focus();
-				document.form.userName.disabled = false;
-				if (userName == "") {
-					alert("User name cannot be null!");
-					return false;
-				} else {
-					document.form.cotactNo.focus();
-					document.form.cotactNo.disabled = false;
-					if (cotactNo == "") {
-						alert(" User contact number can not be null!");
-						return false;
-					} else {
-						document.form.email.focus();
-						document.form.email.disabled = false;
-						if (email == "") {
-							alert(" User email address can not be null!");
-							return false;
-						}
-					}
-		}
-		return true;
-	}
-</script>
 </html>
