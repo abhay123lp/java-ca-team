@@ -77,6 +77,7 @@ public class SOperateBook extends HttpServlet {
 	
 	protected void doBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String op = request.getParameter("op");
+		if(op==null || op.equals("")) op="current";
 		String fowardTo = "BookingList.jsp?op="+op;
 		request.getRequestDispatcher(fowardTo).forward(request, response);
 	}
