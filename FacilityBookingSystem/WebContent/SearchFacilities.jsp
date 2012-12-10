@@ -11,15 +11,14 @@
 .even {
 	background-color: #EFFBEF;
 }
-
 .odd {
 	background-color: white;
 }
 </style>
 </head>
 <body >
-	<form action="/FacilityBookingSystem/SearchFacilityController" method="post">
-		<div>
+	<form action="/SearchFacilityController" method="post">
+		<div >
 			<fieldset>
 				<legend>Search Facility</legend>
 				<table border="0">
