@@ -127,6 +127,19 @@
 		<servlet-name>DisplayChart</servlet-name>
 		<url-pattern>/DisplayChart</url-pattern>
 	</servlet-mapping>
+	<servlet>
+    <description>
+		</description>
+    <display-name>book
+		</display-name>
+    <servlet-name>BookServlet</servlet-name>
+    <servlet-class>controller.BookServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookServlet</servlet-name>
+    <url-pattern>/book</url-pattern>
+  </servlet-mapping>
 </web-app>
   
  
