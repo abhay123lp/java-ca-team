@@ -1,4 +1,5 @@
 package data.daoimp;
+import data.EnumBookStatus;
 import data.EnumPriority;
 import java.sql.Connection;
 import java.sql.Date;
@@ -6,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,9 +65,10 @@ public class BookingImp extends BaseConnection implements BookingDAO{
   }
   public List<Booking> loadAllByFacilityIDMon(String facilityID,java.sql.Date sDate,java.sql.Date eDate) throws SQLException {
 
-      String sql =  "SELECT * FROM Bookings WHERE FacID = '"+facilityID+"'and StartTime  BETWEEN "+sDate+"AND"+eDate+"OR EndTime BETWEEN "+sDate+"AND"+eDate;
-      List<Booking> searchResults = listQuery(conn.prepareStatement(sql));
-
+      String sql =  "SELECT * FROM Bookings WHERE FacID = '"+facilityID+"'"+
+    		  " AND BookStatus='"+EnumBookStatus.Approve.toString()+"'"+
+    		  "and StartTime  BETWEEN ? AND ? OR EndTime BETWEEN ? AND ?";
+      List<Booking> searchResults = listQuery(conn.prepareStatement(sql),sDate,eDate);
       return searchResults;
   }
   public List<Booking> loadAllByUserID(String userID) throws SQLException {
@@ -77,15 +80,18 @@ public class BookingImp extends BaseConnection implements BookingDAO{
   }
   public List<Booking> loadAllByUserID(String userID,java.sql.Date sDate,java.sql.Date eDate) throws SQLException {
 
-      String sql = "SELECT * FROM Bookings WHERE UserID = '"+userID+"'and StartTime  BETWEEN "+sDate+"AND"+eDate+"OR EndTime BETWEEN "+sDate+"AND"+eDate;;
-      List<Booking> searchResults = listQuery(conn.prepareStatement(sql));
-
+      String sql = "SELECT * FROM Bookings WHERE UserID = '"+userID+"'"+
+    		  " AND BookStatus='"+EnumBookStatus.Approve.toString()+"'"+
+    		  "and StartTime  BETWEEN ? AND ? OR EndTime BETWEEN ? AND ?";
+      List<Booking> searchResults = listQuery(conn.prepareStatement(sql),sDate,eDate);
       return searchResults;
   }
   
   public List<Booking> loadAllByUserID(String userID,java.sql.Date sDate,java.sql.Date eDate,String p) throws SQLException {
 
-      String sql = "SELECT * FROM Bookings WHERE UserID = '"+userID+"'and StartTime  BETWEEN "+sDate+"AND"+eDate+"OR EndTime BETWEEN "+sDate+"AND"+eDate+"And Priority = "+p;
+      String sql = "SELECT * FROM Bookings WHERE UserID = '"+userID+
+    		  "' and StartTime  BETWEEN "+sDate+" AND "+eDate+" OR EndTime BETWEEN "+
+    		  sDate+" AND "+eDate+" And Priority = "+p;
       List<Booking> searchResults = listQuery(conn.prepareStatement(sql));
 
       return searchResults;
@@ -129,8 +135,8 @@ public class BookingImp extends BaseConnection implements BookingDAO{
              stmt.setString(1, valueObject.getBookingID()); 
              stmt.setString(2, valueObject.getUserID()); 
              stmt.setString(3, valueObject.getFacilityID()); 
-             stmt.setDate(4, valueObject.getStarttime()); 
-             stmt.setDate(5, valueObject.getEndtime()); 
+             stmt.setDate(4, this.generateSQLDate(valueObject.getStarttime()) ); 
+             stmt.setDate(5, this.generateSQLDate(valueObject.getEndtime()) ); 
              stmt.setString(6, valueObject.getStatus()); 
              stmt.setString(7, valueObject.getPriority()); 
              stmt.setString(8, valueObject.getReason()); 
@@ -161,8 +167,8 @@ public class BookingImp extends BaseConnection implements BookingDAO{
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, valueObject.getUserID()); 
             stmt.setString(2, valueObject.getFacilityID()); 
-            stmt.setDate(3, valueObject.getStarttime()); 
-            stmt.setDate(4, valueObject.getEndtime()); 
+            stmt.setDate(3, this.generateSQLDate(valueObject.getStarttime() )); 
+            stmt.setDate(4, this.generateSQLDate(valueObject.getEndtime()) ); 
             stmt.setString(5, valueObject.getStatus()); 
             stmt.setString(6, valueObject.getPriority()); 
             stmt.setString(7, valueObject.getReason()); 
@@ -321,9 +327,11 @@ public class BookingImp extends BaseConnection implements BookingDAO{
 		String id = String.format("B%09d", serial+1);
 		return id;
   }
+  
   public java.sql.Date generateSQLDate(java.util.Date date){
   	return new java.sql.Date(date.getTime());
   }
+  
   //Class method
   protected int databaseUpdate(PreparedStatement stmt) throws SQLException {
 
@@ -392,6 +400,42 @@ public class BookingImp extends BaseConnection implements BookingDAO{
         }
 
         return searchResults;
+  }
+  
+  protected List<Booking> listQuery(PreparedStatement stmt,java.sql.Date sDate,java.sql.Date eDate) throws SQLException {
+
+      ArrayList<Booking> searchResults = new ArrayList<Booking>();
+      ResultSet result = null;
+      
+      try {
+    	  //Set the time line
+    	  stmt.setDate(1, sDate);
+    	  stmt.setDate(2, eDate);
+    	  stmt.setDate(3, sDate);
+    	  stmt.setDate(4, eDate);
+          result = stmt.executeQuery();
+          while (result.next()) {
+               Booking temp = createValueObject();
+
+               temp.setBookingID(result.getString("BookingID")); 
+               temp.setUserID(result.getString("UserID")); 
+               temp.setFacilityID(result.getString("FacID")); 
+               temp.setStarttime(result.getDate("StartTime")); 
+               temp.setEndtime(result.getDate("Endtime")); 
+               temp.setStatus(result.getString("BookStatus")); 
+               temp.setPriority(result.getString("Priority")); 
+               temp.setReason(result.getString("Reason")); 
+
+               searchResults.add(temp);
+          }
+
+      } finally {
+          if (result != null)
+              result.close();
+          if (stmt != null)
+              stmt.close();
+      }
+      return searchResults;
   }
 }
 

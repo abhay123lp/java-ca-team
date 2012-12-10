@@ -2,6 +2,8 @@ package business;
 import java.sql.Date;
 import java.sql.SQLException;
 import exception.BadBookingException;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Calendar;
 import data.DAOFactory;
@@ -30,9 +32,6 @@ public class BookingManager {
 	public static boolean IsHoliday(Booking NewBooking)
 	{
 		return false;
-		
-		
-		
 	}
 	
 	public static boolean IsIllegalHighPriority(Booking NewBooking) throws SQLException
@@ -51,8 +50,6 @@ public class BookingManager {
 		if(bookList.size()>2)
 		return true;
 	    return false;
-		
-		
 	}
 	
 	public static void ConfirmBooking(Booking NewBooking) throws SQLException
@@ -60,31 +57,30 @@ public class BookingManager {
 		DAOFactory.getBookingDAO().create(NewBooking);
 	}
 	
-	public static void ValidateBooking(Booking NewBooking)throws BadBookingException, SQLException
+	public static boolean ValidateBooking(Booking NewBooking)throws BadBookingException, SQLException
 	{
-		
-		if(IsOverlapForUser(NewBooking))
-		{
-			throw new BadBookingException("There are other facility booking ");
+		boolean rightbooking = true;
+		String errorMsg = "";
+		if( NewBooking.getEndtime().before( NewBooking.getStarttime() ) ){
+			rightbooking = false;
+			errorMsg+="Your startDate should before endDate!:";
 		}
-		
-		else
-		{
-			if(IsIllegalHighPriority(NewBooking))
-			{
-				throw new BadBookingException("High priority booking cannot be done for this month");
-			}
-			else
-			{
-				ConfirmBooking(NewBooking);
-			}
+		if( IsOverlapForUser(NewBooking) ){
+			rightbooking = false;
+			errorMsg+="You have another booking in same time!:";
 		}
-		
-		
-		
+		if( IsHoliday(NewBooking) ){
+			rightbooking = false;
+			errorMsg+="The facility can use in weekend and public holiday!:";
+		}
+		if( IsOverlapForFacility(NewBooking)){
+			rightbooking = false;
+			errorMsg+="The facility have been reserved for other user!:";
+		}
+		if(rightbooking) return true;
+		else throw new BadBookingException(errorMsg);
 	}
-		
-	}
+}
 	
 
 
