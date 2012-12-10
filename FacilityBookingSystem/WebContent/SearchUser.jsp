@@ -6,7 +6,7 @@
 <html>
 <table>
 	<tr>
-		<td><img src="logo.gif"></td>
+		<td><img src="images/logo.gif"></td>
 	</tr>
 </table>
 <head>
@@ -17,8 +17,9 @@
 <title>Search User</title>
 </head>
 <body>
-	<form action="SearchUserServlet" method=post>
-	
+	<form name="userList" id="userList" action="SearchUserServlet"
+		method=post>
+		<center>
 			<table cellpadding=5 cellspacing=3 border=1>
 				<tr>
 					<th width="45%">Description</th>
@@ -38,10 +39,20 @@
 				</tr>
 				<tr>
 					<td><fmt:message key="setup.Role" /></td>
-					<td><input type="text" name="Role"
-						value="${param['Role']}" size=15 maxlength=20></td>
-
+					<td><select name="Role">
+							<option value="" selected="selected">[roles]</option>
+							<option value="staff">staff</option>
+							<option value="admin">admin</option>
+							<option value="manager">manager</option>
+					</select></td>
 				</tr>
+				<%-- 	
+			<tr>
+				<td><fmt:message key="setup.Role" /></td>
+				<td><input type="text" name="Role" value="${param['Role']}"
+					size=15 maxlength=20></td>
+			</tr>
+			--%>
 
 				<tr>
 					<td><fmt:message key="setup.ContactNo" /></td>
@@ -55,33 +66,85 @@
 						value="${param['EmailAddress']}" size=15 maxlength=20></td>
 
 				</tr>
-			</table>
-		
-		&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit"> 
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="reset" value="Reset">
-			
-	</form>
-	<table class="borderAll" cellpadding=4 cellspacing=2 border=0>
-		<tr>
-			<th width="15%"><fmt:message key="label.User.UserID" /></th>
-			<th width="15%"><fmt:message key="label.User.UserPSW" /></th>
-			<th width="25%"><fmt:message key="label.User.UserName" /></th>
-			<th width="15%"><fmt:message key="label.User.Role" /></th>
-			<th width="15%"><fmt:message key="label.User.ContactNo" /></th>
-			<th width="25%"><fmt:message key="label.User.EmailAddress" /></th>
-		</tr>
-		<c:forEach var="User" items="${searchlist}" varStatus="status">
-			<tr class="${status.index%2==0?'even':'odd'}">
-				<td width="15%" class="nowrap">${User.userID}</td>
-				<td width="10%" class="nowrap">${User.userPSW}</td>
-				<td width="25%" class="nowrap">${User.userName}</td>
-				<td width="15%" class="nowrap">${User.role}</td>
-				<td width="15%" class="nowrap">${User.contactNo}</td>
-				<td width="25%" class="nowrap">${User.emailAddress}</td>
-			</tr>
-		</c:forEach>
-	</table>
+				<tr>
+					<td>
 
+						<div id="searchList_errorloc" class="error_strings"></div>
+					</td>
+				</tr>
+			</table>
+
+			<input align="middle" type='image' name='Submit' id='userSubmit'
+				src='images/SubmitButton.png' alt='submit' class='loading_div' /> <input
+				align="middle" type='image' name='Reset' id='userRest'
+				src='images/ResetButton.png' alt='reset' />
+			<%--
+		&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="reset" value="Reset">--%>
+		</center>
+	</form>
+
+	<form name="searchList" id="searchList">
+
+		<table class="borderAll" cellpadding=4 cellspacing=2 border=0>
+			<tr>
+				<th width="15%"><fmt:message key="label.User.UserID" /></th>
+				<th width="15%"><fmt:message key="label.User.UserPSW" /></th>
+				<th width="25%"><fmt:message key="label.User.UserName" /></th>
+				<th width="15%"><fmt:message key="label.User.Role" /></th>
+				<th width="15%"><fmt:message key="label.User.ContactNo" /></th>
+				<th width="25%"><fmt:message key="label.User.EmailAddress" /></th>
+			</tr>
+			<c:forEach var="User" items="${searchlist}" varStatus="status">
+				<tr class="${status.index%2==0?'even':'odd'}">
+					<td width="15%" class="nowrap">${User.userID}</td>
+					<td width="10%" class="nowrap">${User.userPSW}</td>
+					<td width="25%" class="nowrap">${User.userName}</td>
+					<td width="15%" class="nowrap">${User.role}</td>
+					<td width="15%" class="nowrap">${User.contactNo}</td>
+					<td width="25%" class="nowrap">${User.emailAddress}</td>
+				</tr>
+			</c:forEach>
+		</table>
+
+	</form>
+	<script language="JavaScript" type='text/javascript'>
+		var userFormValidator = new Validator("userList");
+		userFormValidator.EnableOnPageErrorDisplaySingleBox();
+		userFormValidator.EnableMsgsTogether();
+		userFormValidator.addValidation("UserID", "required",
+				"Please fill in UserID");
+		userFormValidator.addValidation("UserID", "minlen=7 ",
+				"The user password mininum length is 7");
+		userFormValidator.addValidation("UserName", "required",
+				"Please fill in UserName");
+		userFormValidator.addValidation("UserName", "alnum_s",
+				"The input for UserName should be a valid alpha-numeric value");
+		userFormValidator.addValidation("Role", "required",
+				"Please fill in the role ");
+		userFormValidator.addValidation("Role","dontselect=default");
+		userFormValidator.addValidation("ContactNo", "numeric",
+				"The input for ContactNo should be a valid numeric value");
+
+		userFormValidator.addValidation("ContactNo", "required",
+				"Please fill in ContactNo");
+		userFormValidator.addValidation("EmailAddress", "email",
+				" EmailAdddress should be a valid email address");
+		userFormValidator.addValidation("EmailAddress", "required",
+				"Please fill in EmailAdddress");
+		function DoCustomValidation() {
+			var userForm = document.forms["userList"];
+			if (userForm.Role.value == 'staff'
+					|| userForm.Role.value == 'admin') {
+				sfm_show_error_msg("You are not allowed to enter this page! ");
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		userFormValidator.setAddnlValidationFunction(DoCustomValidation);
+	</script>
 </body>
 </html>
