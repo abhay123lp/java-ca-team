@@ -6,7 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<fmt:setBundle basename="messagetitle" />
+<c:set var="t" value="true" />
+<title><fmt:message key="title" /></title>
+<title>FacilitySetupPage</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+
+<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 <div id="wrapper">
@@ -38,7 +46,7 @@
 
 			<form action="process" method="post" name="register">
 
-				<!--<jsp:useBean id="facility" class="model.FacilityDTO"/> -->
+				<!--<jsp:useBean id="facility" class="data.dto.Facility"/> -->
 				<table cellpadding=4 cellspacing=2 border=0>
 					<tr>
 						<th width="45%">Description</th>
