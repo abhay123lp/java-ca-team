@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.FocusAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import sun.awt.FocusingTextField;
 
 import business.UserManager;
 
@@ -42,30 +45,40 @@ public class SearchUserServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException, NotFoundException  {
 		String userName = request.getParameter("UserName");
 		String userid = request.getParameter("UserID");
-		String userpsw = request.getParameter("UserPSW");
 		String role = request.getParameter("Role");
 		String contactNo = request.getParameter("ContactNo");
-
 		String email = request.getParameter("EmailAddress");
-		if (userName.trim().equalsIgnoreCase("")&&userid.trim().equalsIgnoreCase("")
-				&&userpsw.trim().equalsIgnoreCase("")&&role.trim().equalsIgnoreCase("")&&
+		if((userName.trim()==null||userName.equalsIgnoreCase(""))&&
+				(userid.trim()==null||userName.equalsIgnoreCase(""))&&
+				(role.trim()==null||role.equalsIgnoreCase(""))&&
+				(contactNo.trim()==null||contactNo.equalsIgnoreCase(""))&&
+				(email.trim()==null||email.equalsIgnoreCase("")))
+		{
+			request.setAttribute("error", "search.error");
+			RequestDispatcher rd = request.getRequestDispatcher("/SearchUser.jsp");
+			rd.forward(request, response);
+
+		}
+
+
+		else if (userName.trim().equalsIgnoreCase("")&&userid.trim().equalsIgnoreCase("")
+				&&role.trim().equalsIgnoreCase("")&&
 				contactNo.trim().equalsIgnoreCase("")&&email.trim().equalsIgnoreCase(""))
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("/SearchUserPage.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/SearchUser.jsp");
 			rd.forward(request, response);
 		}
-		else {
+		else  {
 			User user = new User();
 
 			user.setUserName(userName);
 			user.setUserID(userid);
-			user.setUserPSW(userpsw);
+
 			user.setRole(role);			
 			user.setContactNo(contactNo);
 			user.setEmailAddress(email);
-
 			UserManager hm = new UserManager();
-		   List<User> userlist = hm.findUsersByCriteria(user);
+			List<User> userlist = hm.findUsersByCriteria(user);
 			request.setAttribute("searchlist", userlist);
 			RequestDispatcher rd = request.getRequestDispatcher("/SearchUser.jsp");
 			rd.forward(request, response);
