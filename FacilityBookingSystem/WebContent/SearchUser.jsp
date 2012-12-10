@@ -15,6 +15,10 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Search User</title>
+<script language="JavaScript" src="script/gen_validatorv4.js"
+	type="text/javascript"></script>
+<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
+	type="text/css" />
 </head>
 <body>
 	<form name="userList" id="userList" action="SearchUserServlet"
@@ -66,12 +70,15 @@
 						value="${param['EmailAddress']}" size=15 maxlength=20></td>
 
 				</tr>
+				<c:if test="${not empty error }">
+				
 				<tr>
-					<td>
-
-						<div id="searchList_errorloc" class="error_strings"></div>
+				
+					<td colspan=2 >
+					<font color="red"><fmt:message key="${error}"></fmt:message></font>
 					</td>
 				</tr>
+				</c:if>
 			</table>
 
 			<input align="middle" type='image' name='Submit' id='userSubmit'
@@ -110,29 +117,7 @@
 
 	</form>
 	<script language="JavaScript" type='text/javascript'>
-		var userFormValidator = new Validator("userList");
-		userFormValidator.EnableOnPageErrorDisplaySingleBox();
-		userFormValidator.EnableMsgsTogether();
-		userFormValidator.addValidation("UserID", "required",
-				"Please fill in UserID");
-		userFormValidator.addValidation("UserID", "minlen=7 ",
-				"The user password mininum length is 7");
-		userFormValidator.addValidation("UserName", "required",
-				"Please fill in UserName");
-		userFormValidator.addValidation("UserName", "alnum_s",
-				"The input for UserName should be a valid alpha-numeric value");
-		userFormValidator.addValidation("Role", "required",
-				"Please fill in the role ");
-		userFormValidator.addValidation("Role","dontselect=default");
-		userFormValidator.addValidation("ContactNo", "numeric",
-				"The input for ContactNo should be a valid numeric value");
-
-		userFormValidator.addValidation("ContactNo", "required",
-				"Please fill in ContactNo");
-		userFormValidator.addValidation("EmailAddress", "email",
-				" EmailAdddress should be a valid email address");
-		userFormValidator.addValidation("EmailAddress", "required",
-				"Please fill in EmailAdddress");
+		
 		function DoCustomValidation() {
 			var userForm = document.forms["userList"];
 			if (userForm.Role.value == 'staff'
