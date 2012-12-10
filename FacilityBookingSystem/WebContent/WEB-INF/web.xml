@@ -75,4 +75,31 @@
     <servlet-name>SearchUserServlet</servlet-name>
     <url-pattern>/SearchUserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description>
+		</description>
+    <display-name>SGetBookingList
+		</display-name>
+    <servlet-name>SGetBookingList</servlet-name>
+    <servlet-class>controller.SGetBookingList
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SGetBookingList</servlet-name>
+    <url-pattern>/SGBL</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>
+		</description>
+    <display-name>SLoadBookInfo
+		</display-name>
+    <servlet-name>SLoadBookInfo</servlet-name>
+    <servlet-class>controller.SLoadBookInfo
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SLoadBookInfo</servlet-name>
+    <url-pattern>/SLoadBookInfo</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
