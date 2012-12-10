@@ -7,7 +7,7 @@
 <html>
 <table>
 	<tr>
-		<td><img src="logo.gif"></td>
+		<td><img src="images/logo.gif"></td>
 	</tr>
 </table>
 <head>
@@ -15,7 +15,7 @@
 <link href="<c:url value='css/style.css'/>" rel="stylesheet"
 	type="text/css" />
 <fmt:setBundle basename="messages" />
-<title><fmt:message key="title" /></title>
+<title><fmt:message key="user.title" /></title>
 
 </head>
 <body>
