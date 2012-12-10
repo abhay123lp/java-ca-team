@@ -1,4 +1,4 @@
-package data;
+package data.dto;
 
 public enum EnumBookStatus {
 	Processing("Processing"),Delete("Delete"),Cancel("Cancel"),Approve("Approve"),Rejected("Rejected"),Finish("Finish");
