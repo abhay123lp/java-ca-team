@@ -58,38 +58,38 @@ public void doProcess(HttpServletRequest request,HttpServletResponse response) t
 			if(isID&&isPSW){
 				UserManager uc=new UserManager();
 				User getUser=uc.checkUser(userID, userPSW);
-				menu.add("View Current Bookings");
+				//menu.add("View Current Bookings");
 				int checkResult=uc.getUserError(userID, userPSW);
 				switch(checkResult){
 					case 1:
 						request.getSession().setAttribute("myUser", getUser);
-						request.getSession().setAttribute("myUserRole", getUser.getRole());
-						request.getSession().setAttribute("myUserName", getUser.getUserName());
+//						request.getSession().setAttribute("myUserRole", getUser.getRole());
+//						request.getSession().setAttribute("myUserName", getUser.getUserName());
 						if(getUser.getRole().equals(EnumUserRole.Administrator.toString())){	
-							menu.add("SearchUser");
+							menu.add("FacilityCUD");
 							//menu.add("Maintain Facilities");
-							menu.add("CUDPage");
-							menu.add("Manage/Report Booking");
-							menu.add("View/Print Monthly Usage");
+							menu.add("FacilityTypeCUD");
+							menu.add("BookingReport");
+							menu.add("SearchUser");							
 							rd=request.getRequestDispatcher("home.jsp");
 						}
 						else if(getUser.getRole().equals(EnumUserRole.Staff.toString())){
-							menu.add("Search Empty Facilities");
-							menu.add("Make a Booking");
-							menu.add("View Booking Status/History");
-							menu.add("Cancel An approved booking");
-							menu.add("Email booking status");
-							rd=request.getRequestDispatcher("home.jsp");
+							menu.add("MakeBooking");
+							menu.add("BookingList");
+							menu.add("SearchFacilities");
+//							menu.add("Cancel An approved booking");
+//							menu.add("Email booking status");
+						rd=request.getRequestDispatcher("home.jsp");
 						}
 						else if(getUser.getRole().equals(EnumUserRole.Manager.toString())){
-							menu.add("Search Empty Facilities");
-							menu.add("Make a Booking");
-							menu.add("View Booking Status/History");
-							menu.add("Cancel An approved booking");
-							menu.add("Email booking status");
-							menu.add("operateBooking");
-							menu.add("BookingList");
-							menu.add("View/Print Monthly Usage");
+							menu.add("ViewBooking");
+							menu.add("SearchFacilities");
+							menu.add("MakeBooking");
+							menu.add("BookingReport");
+//							menu.add("Email booking status");
+//							menu.add("View pending requests");
+//							menu.add("Approve/Reject booking");
+//							menu.add("View/Print Monthly Usage");
 							rd=request.getRequestDispatcher("home.jsp");
 						}
 						request.getSession().setAttribute("menu", menu);
