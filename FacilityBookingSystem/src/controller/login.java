@@ -68,7 +68,7 @@ public void doProcess(HttpServletRequest request,HttpServletResponse response) t
 						if(getUser.getRole().equals(EnumUserRole.Administrator.toString())){	
 							menu.add("SearchUser");
 							//menu.add("Maintain Facilities");
-							menu.add("userLoadPage");
+							menu.add("CUDPage");
 							menu.add("Manage/Report Booking");
 							menu.add("View/Print Monthly Usage");
 							rd=request.getRequestDispatcher("home.jsp");
