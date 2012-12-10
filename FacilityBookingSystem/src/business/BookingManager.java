@@ -8,10 +8,9 @@ import exception.BadBookingException;
 import java.util.List;
 import java.util.Calendar;
 import data.DAOFactory;
+import data.EnumPriority;
 import data.dto.Booking;
 import java.util.Calendar;
-
-import model.EnumPriority;
 
 public class BookingManager {
 

@@ -1,12 +1,14 @@
 package business;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import data.DAOFactory;
 import data.dao.*;
 import data.dto.*;
 import exception.FacilityException;
+import exception.NotFoundException;
 
 public class FacilityManager {
 	FacilityDAO fDao=null;
@@ -32,6 +34,84 @@ public class FacilityManager {
 		}
 		return facList;
 	
+	}
+	
+	@SuppressWarnings("finally")
+	public ArrayList<Facility> findAllFacility() {
+		ArrayList<Facility> currentList = new ArrayList<Facility>();
+		try {
+			currentList = (ArrayList<Facility>) fDao.getAllFacilities();
+		} finally {
+			return currentList;
+		}
+	}
+	
+	public void insertFacility(Facility facility) {
+		try {
+			fDao.addFacility(facility);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void updateFacility(Facility facility) {
+		try {
+			fDao.updateFacility(facility);
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteFacility(Facility facility) {
+		try {
+			fDao.deleteFacility(facility);
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public boolean IsCheckedFacilityID(Facility f) {
+		String facID = null;
+		try {
+			facID = fDao.getFacility(f.getFacID()).getFacID();
+		} finally {
+			if (facID == null)
+				return true;
+			else
+				return false;
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	public Facility findFacility(String FacID) {
+		Facility currentFac = new Facility();
+		try {
+			currentFac = fDao.getFacility(FacID);
+		} finally {
+			return currentFac;
+		}
+	}
+	
+	public boolean IsCheckedFacilityName(Facility f){
+		String facName = null;
+		try {
+			facName = fDao.findFacilityName(f.getFacName()).getFacName();
+		} finally {
+			if (facName == null)
+				return true;
+			else
+				return false;
+		}
 	}
 
 }
