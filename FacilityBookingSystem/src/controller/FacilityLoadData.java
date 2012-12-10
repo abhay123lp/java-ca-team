@@ -61,8 +61,7 @@ public class FacilityLoadData extends HttpServlet {
 				FacilityManager fm = new FacilityManager();
 				ArrayList<Facility> data =fm.findAllFacility();
 				request.setAttribute("facility", data);
-				RequestDispatcher rdp = request
-						.getRequestDispatcher("/FacilityCUD.jsp");
+				RequestDispatcher rdp = request.getRequestDispatcher("/CUDPage.jsp");
 				try {
 					rdp.forward(request, response);
 				} catch (ServletException se) {
