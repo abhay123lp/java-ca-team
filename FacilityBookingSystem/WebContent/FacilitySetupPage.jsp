@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<fmt:setBundle basename="messagetitle" />
+<fmt:setBundle basename="messages" />
 <c:set var="t" value="true" />
 <title><fmt:message key="title" /></title>
 <title>FacilitySetupPage</title>
