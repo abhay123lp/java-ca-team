@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -63,12 +65,12 @@
 		<table>
 			<tr>
 				<td>FacilityID:</td>
-				<td><input type="text" name="facilityID" value="F000000001"
+				<td><input type="text" name="facilityID" value=<%=session.getAttribute("facID") %>
 					readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>UserID:</td>
-				<td><input type="text" name="UserID" value="A000000002"
+				<td><input type="text" name="UserID" value=<%=session.getAttribute("myUserName")%>
 					readonly="readonly"></td>
 			</tr>
 			<tr>
