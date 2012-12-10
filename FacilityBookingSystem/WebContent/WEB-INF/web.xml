@@ -147,4 +147,34 @@
     <url-pattern>/SLoadBookInfo</url-pattern>
   </servlet-mapping>
   
+  <servlet-mapping>
+		<servlet-name>FacilityLoadData</servlet-name>
+		<url-pattern>/FacilityLoadData</url-pattern>
+	</servlet-mapping>
+	
+ 	<servlet-mapping> 
+ 		<servlet-name>FacilityTypeLoadData</servlet-name> 
+ 		<url-pattern>/FacilityTypeLoadData</url-pattern>
+ 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ProcessServlet</servlet-name>
+		<url-pattern>/process</url-pattern>
+	</servlet-mapping>
+	
+ 	<servlet-mapping>
+ 		<servlet-name>FacilityTypeProcessServlet</servlet-name>
+		<url-pattern>/type</url-pattern> 
+ 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>FacilityDeleteServlet</servlet-name>
+		<url-pattern>/deleteFacility</url-pattern>
+	</servlet-mapping>
+	
+ 	<servlet-mapping> 
+ 		<servlet-name>FacTypeDeleteServlet</servlet-name>
+ 		<url-pattern>/deleteFacilityType</url-pattern> 
+ 	</servlet-mapping> 
+  
 </web-app>
