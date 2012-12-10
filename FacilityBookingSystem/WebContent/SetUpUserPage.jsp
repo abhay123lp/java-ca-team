@@ -88,8 +88,8 @@
 					value="${param['EmailAddress']}" size=15 maxlength=20></td>
 			</tr>
 			<tr>
-			<td colspan=4>
-				<div id="userForm_errorloc" class="error_strings"></div>
+				<td colspan=4>
+					<div id="userForm_errorloc" class="errorMsg"></div>
 				</td>
 			</tr>
 		</table>
@@ -103,7 +103,6 @@
 
 		<%--&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" align="left"
 			value="Submit">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="reset" align="left" value="Reset">--%>
 
 	</form>

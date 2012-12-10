@@ -70,7 +70,7 @@
 						value="${param['EmailAddress']}" size=15 maxlength=20></td>
 
 				</tr>
-				<c:if test="${not empty error }">
+				<c:if test="${not empty error }" >
 				
 				<tr>
 				
