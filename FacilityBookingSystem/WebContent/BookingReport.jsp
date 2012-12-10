@@ -98,8 +98,9 @@
 	</form>
 	<div class="left_content">
 	<form action = "BookingStatusView" method = "post">
-    <p class="style1">
-&nbsp;Booking Report</p>
+    <span class="title_icon"><img alt="" src="images/bookingreport.jpg" width="50px" height="55px"></span>
+    <p class="style1"><u>Booking Report</u></p>
+
     <p class="style1">
         <table style="width:100%;">
             <tr>
@@ -111,12 +112,12 @@
                         <option value = "Cancel">Cancel</option>
                         <option value = "Rejected">Rejected</option>
                         <option value = "DElete">Delete</option>
-                    </select><input id="Submit1" type="submit" value="Search" /></td>
+                    </select><input id="Submit1" type="submit" value="Search" class="button"/></td>
             </tr>
         </table>
     </p>
     <p class="style1">
-        <table style="width:100%;">
+        <table style="width:800px; border-color: black;">
             <tr>
                 <td align="center" class="style3">
                     BookingID</td>
