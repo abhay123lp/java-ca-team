@@ -66,9 +66,9 @@ public void doProcess(HttpServletRequest request,HttpServletResponse response) t
 						request.getSession().setAttribute("myUserRole", getUser.getRole());
 						request.getSession().setAttribute("myUserName", getUser.getUserName());
 						if(getUser.getRole().equals(EnumUserRole.Administrator.toString())){	
-							menu.add("staffPage");
+							menu.add("SearchUser");
 							//menu.add("Maintain Facilities");
-							menu.add("Manage Staff");
+							menu.add("userLoadPage");
 							menu.add("Manage/Report Booking");
 							menu.add("View/Print Monthly Usage");
 							rd=request.getRequestDispatcher("home.jsp");
