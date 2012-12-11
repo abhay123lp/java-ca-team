@@ -107,12 +107,12 @@
 <c:choose>
 	<c:when test="${requestScope.update==1}">
 		<td>
-		<input type="text" name="starttime" id="s_d" value="${booking.starttime}"/><button id="f_pickS">.</button>
+		<input type="text" name="starttime" id="s_d" value="${booking.starttime}"/><img src="images/timePicker.png" id="f_pickS"/>
 		<script type="text/javascript">//<![CDATA[                              
 			      Calendar.setup({
 			        inputField : "s_d",
 			        trigger    : "f_pickS",
-			        onSelect   : function() { this.hide()},
+			        onSelect   : function() { this.hide();},
 			        disabled   : function(date) {
 			        	  var today = new Date();
 			        	  if(date.getDay() == 0 || date.getDay() == 6) return true;
@@ -136,12 +136,12 @@
 <c:choose>
 	<c:when test="${requestScope.update==1}">
 		<td>
-		<input type="text" name="endtime" id="s_e" value="${booking.endtime}" /><button id="f_pickE">.</button>
+		<input type="text" name="endtime" id="s_e" value="${booking.endtime}" /><img src="images/timePicker.png" id="f_pickE"/>
 		<script type="text/javascript">//<![CDATA[
 			      Calendar.setup({
 			        inputField : "s_e",
 			        trigger    : "f_pickE",
-			        onSelect   : function() { this.hide()},
+			        onSelect   : function() { this.hide();},
 			        disabled   : function(date) {
 			        	  var str = document.getElementById("s_d").value;
 			        	  var stdt=new Date(str.replace("-","/"));
@@ -233,5 +233,6 @@ The facility have reserved.If you want to change facility please check the avail
 </table>
 </form>
 
+<jsp:include page="Footer.jsp"></jsp:include>
 </body>
 </html>
