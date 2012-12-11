@@ -6,7 +6,7 @@
 <html>
 <head>
 <link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css"/>
-<fmt:setBundle basename="messagetitle" />
+<fmt:setBundle basename="messages" />
 <title> <fmt:message key="title"/> </title>
 <!-- </head> -->
 <!-- <body> -->

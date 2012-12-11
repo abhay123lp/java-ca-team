@@ -99,8 +99,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="image" value="save" src="images/SubmitButton.png"> <input
-					type="image" value="reset" src="images/ResetButton.png"> 
+				<td><input type="submit" value="save" class="button"> <input
+					type="reset" value="reset" class="button" > 
 			</tr>
 			<tr>
 			<td colspan=4>
