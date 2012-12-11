@@ -9,7 +9,11 @@ Version    : 1.0
 Released   : 20120210
 */
 /*------------------------------------center content--------------------*/
-
+.style1
+        {
+            font-family: "Times New Roman", Times, serif;
+            font-size: x-large;
+        }
 .left_content{
 width:800px;
 
@@ -22,11 +26,11 @@ float:left;
 padding:20px 0 20px 20px;
 }
 .button{
-	background-color:#33b0b0;
+	background-color:black;
 	width: 80px;
 	height: 27px;
 	color: white;
-	border-bottom-color: black;
+	border-bottom-color: white;
 }
 
 .right_content{
