@@ -10,7 +10,7 @@
 	type="text/javascript"></script>
 	<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
 	type="text/css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+
 <title>Booking details</title>
 
 </head>
