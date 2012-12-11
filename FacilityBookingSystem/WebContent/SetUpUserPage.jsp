@@ -22,10 +22,10 @@
 	type="text/css" />
 <link rel="stylesheet" type="text/css" href="style.css"/>
 
+
 </head>
 <body>
-<div id="wrapper">
-		<form action="login" method="post">
+	<form action="login" method="post">
 			<div id="header">
 				<div id="logo">
 					<h1>
@@ -56,7 +56,7 @@
 			</div>
 
 		</form>
-	<form name="userForm" id="userForm" action="UserProcessServlet"
+	<form name="userForm" id="userForm" 
 		method="post">
 
 
@@ -124,18 +124,22 @@
 					<div id="userForm_errorloc" class="errorMsg"></div>
 				</td>
 			</tr>
+			<c:if test="${flag=='true'?Error:null}">
+			
+			</c:if>
 		</table>
 
 
-		<input type='image' name='Submit' id='userSubmit' align="left"
+		<%-- <input type='image' name='Submit' id='userSubmit' align="left"
 			src='images/SubmitButton.png' alt='submit' class='loading_div' /> <input
 			type='image' name='Reset' id='userRest' align="left"
-			src='images/ResetButton.png' alt='reset' />
+			src='images/ResetButton.png' alt='reset' />--%>
 
 
-		<%--&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" align="left"
+		&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" align="left"
 			value="Submit">
-		<input type="reset" align="left" value="Reset">--%>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="reset" align="left" value="Reset">
 
 	</form>
 
@@ -145,8 +149,8 @@
 		userFormValidator.EnableMsgsTogether();
 		userFormValidator.addValidation("UserID", "req",
 				"Please fill in UserID");
-		userFormValidator.addValidation("UserID", "minlen=7 ",
-				"The user id mininum length is 7");
+		userFormValidator.addValidation("UserID", "maxlen=10 ",
+				"The user id maxinum length is 10");
 		userFormValidator.addValidation("UserID", "alnum ",
 				"The user id shall be number or alphabatic");
 		userFormValidator.addValidation("UserPSW", "req",
@@ -178,7 +182,7 @@
 		userFormValidator.addValidation("EmailAddress", "email",
 				" EmailAdddress should be a valid email address");
 
-		/*function DoCustomValidation() {
+	<%--	function DoCustomValidation() {
 			var userForm = document.forms["userForm"];
 			if (userForm.Role.value == 'staff'
 					|| userForm.Role.value == 'admin')
@@ -191,7 +195,7 @@
 			}
 		}
 
-		userFormValidator.setAddnlValidationFunction(DoCustomValidation);*/
+		userFormValidator.setAddnlValidationFunction(DoCustomValidation);--%>
 	</script>
 	 <div id="footer">
 	Copyright (c) 2012 FBS.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">Team 4</a>.
