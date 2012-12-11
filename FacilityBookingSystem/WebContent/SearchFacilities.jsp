@@ -6,18 +6,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css"/>
+<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
+	type="text/css" />
 <title>FacilityBooking System Search Facility</title>
 <style>
 .even {
-background-color: #EFFBEF;
+	background-color: #EFFBEF;
 }
 
 .odd {
-background-color: white;
+	background-color: white;
 }
 </style>
-<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 
 </style>
 <title>FacilityBooking System Search Facility</title>
@@ -36,8 +37,10 @@ background-color: white;
 	<div class="left-content">
 		<form action="/FacilityBookingSystem/SearchFacilities" method="post">
 			<div id="page">
+
 				<fieldset>
 					<legend>Search Facility</legend>
+					<c:out value="${error}" />
 					<table border="0">
 						<tr>
 							<td>Facility Type</td>
@@ -50,8 +53,7 @@ background-color: white;
 							</select></td>
 							<td>Facility Capacity</td>
 							<td><input type="text" name="txtCapacity" /></td>
-							<c:out value="${error}" /> 
-							<td valign="top"><input type="submit" name="btnSearch" 
+							<td valign="top"><input type="submit" name="btnSearch"
 								value="search" alt="search" /></td>
 
 						</tr>
@@ -61,35 +63,42 @@ background-color: white;
 			<div id="page">
 				<fieldset>
 					<legend>Search Result</legend>
+
 					<c:choose>
 						<c:when test="${!facilityAl.get(0).getFacAl().equals(null)}">
-						<div class="right-content">
-							<table>
-								<tr>
-									<td></td>
-									<td align="center">Name</td>
-									<td align="center">Usage</td>
-									<td align="center">Type</td>
-									<td align="center">Capacity</td>
-									<td align="center">Description</td>
-								</tr>
-								<c:forEach var="current" items="${facilityAl.get(0).getFacAl()}"
-									varStatus="status">
-									<tr class="${status.index%2==0?'even':'odd'}">
-										<td align="center"><input type="radio" name="group1"
-											value="${current.getFacID()}" /></td>
-										<td>${current.getFacName()}</td>
-										<td>${current.getFacUsage()}</td>
-										<td>${current.getFadcilityTypeName()}</td>
-										<td>${current.getFacilityCapacity()}</td>
-										<td>${current.getFacilityDescription()}</td>
+							<div class="right-content">
+								<table>
+									<tr>
+										<td></td>
+										<td align="center">Name</td>
+										<td align="center">Usage</td>
+										<td align="center">Type</td>
+										<td align="center">Capacity</td>
+										<td align="center">Description</td>
 									</tr>
-								</c:forEach>
-								<tr>
-									<td colspan="6" align="center"><input type="submit" 
-										name="btnBooking" value="booking" /></td>
-								</tr>
-							</table>
+									<c:forEach var="current"
+										items="${facilityAl.get(0).getFacAl()}" varStatus="status">
+										<tr class="${status.index%2==0?'even':'odd'}">
+											<c:if test="${status.index==0}">
+												<td align="center"><input type="radio" name="group1"
+													value="${current.getFacID()}" checked /></td>
+											</c:if>
+											<c:if test="${status.index!=0 }">
+												<td align="center"><input type="radio" name="group1"
+													value="${current.getFacID()}" /></td>
+											</c:if>
+											<td>${current.getFacName()}
+											<td>${current.getFacUsage()}</td>
+											<td>${current.getFadcilityTypeName()}</td>
+											<td>${current.getFacilityCapacity()}</td>
+											<td>${current.getFacilityDescription()}</td>
+										</tr>
+									</c:forEach>
+									<tr>
+										<td colspan="6" align="center"><input type="submit"
+											name="btnBooking" value="booking" /></td>
+									</tr>
+								</table>
 							</div>
 						</c:when>
 						<c:otherwise>
@@ -100,6 +109,6 @@ background-color: white;
 			</div>
 		</form>
 	</div>
-	
-<%@include file="Footer.jsp"%></body>
+
+	<%@include file="Footer.jsp"%></body>
 </html>
