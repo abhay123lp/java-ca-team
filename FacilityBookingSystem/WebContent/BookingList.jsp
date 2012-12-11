@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View BookingList Page</title>
+<link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css"/>
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
+<%@ include file="home.jsp"%>
+<div id="wrapper">
+	
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<jsp:include page="/SGBL" >
 		<jsp:param name="initial" value="0" />
@@ -48,5 +53,7 @@
 			</td>
 		</tr>
 	</table>
+	</div>
+	<%@include file="Footer.jsp"%>
 </body>
 </html>
