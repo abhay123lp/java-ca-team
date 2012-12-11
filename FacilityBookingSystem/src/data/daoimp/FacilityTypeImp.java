@@ -83,7 +83,7 @@ public class FacilityTypeImp extends BaseConnection implements FacilityTypeDAO {
 
 			int rowcount = databaseUpdate(stmt);
 			if (rowcount != 1) {
-				// System.out.println("PrimaryKey Error when updating DB!");
+			
 				throw new SQLException("PrimaryKey Error when updating DB!");
 			}
 
