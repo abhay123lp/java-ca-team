@@ -45,6 +45,10 @@ public class ProcessServlet extends javax.servlet.http.HttpServlet implements
 		if (request.getParameter("submit") != null) {
 			if (IsValid(request.getParameter("FacID"),
 					request.getParameter("FacUsage"))) {
+				ArrayList<Facility> data = fm.findAllFacility();
+				request.setAttribute("facility", data);
+				RequestDispatcher rdpt = request
+						.getRequestDispatcher("/FacilityLoadData");
 				Facility facility = new Facility();
 				facility.setFacID(request.getParameter("FacID"));
 				facility.setFacName(request.getParameter("FacName"));
@@ -52,11 +56,17 @@ public class ProcessServlet extends javax.servlet.http.HttpServlet implements
 				facility.setTypeID(Integer.parseInt(request
 						.getParameter("cboFacilityType")));
 				if (IsCheckedNull(facility)) {
-
 					String ins = (String) request.getParameter("ins");
 					if (ins.equalsIgnoreCase("true")) {
 						if (IsCheckedFacilty(facility)) {
-							fm.insertFacility(facility);
+							fm.insertFacility(facility);						
+							try {
+								rdpt.forward(request, response);
+							} catch (ServletException e) {
+								e.printStackTrace();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 						} else {
 							String error = "Facitly ID and Facility Name is already exist.";
 							request.setAttribute("error", error);
@@ -74,20 +84,17 @@ public class ProcessServlet extends javax.servlet.http.HttpServlet implements
 						}
 					} else {
 						fm.updateFacility(facility);
+						
+						try {
+							rdpt.forward(request, response);
+						} catch (ServletException e) {
+							e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
-					ArrayList<Facility> data = fm.findAllFacility();
-					request.setAttribute("facility", data);
-					RequestDispatcher rdp = request
-							.getRequestDispatcher("/FacilityLoadData");
-					try {
-						rdp.forward(request, response);
-					} catch (ServletException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-
 				}
+				
 
 			}
 		}
@@ -118,7 +125,7 @@ public class ProcessServlet extends javax.servlet.http.HttpServlet implements
 	protected boolean IsCheckedFacilty(Facility f) {
 		boolean flag = false;
 		FacilityManager fm = new FacilityManager();
-		if (fm.IsCheckedFacilityID(f) && fm.IsCheckedFacilityName(f)) {
+		if (fm.IsCheckedFacilityID(f)) {
 			flag = true;
 		} else {
 			flag = false;
