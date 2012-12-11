@@ -26,7 +26,7 @@
 </head>
 <body>
 	<%@ include file="home.jsp"%>
-	<div class="wrapper">
+	<div id="wrapper">
 	<form name="userForm" id="userForm" 
 		method="post">
 
