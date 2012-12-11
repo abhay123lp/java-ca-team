@@ -4,11 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<table>
-	<tr>
-		<td><img src="images/logo.gif"></td>
-	</tr>
-</table>
+
 <head>
 <fmt:setBundle basename="messages" />
 <c:set var="t" value="true" />
@@ -21,9 +17,50 @@
 	type="text/css" />
 </head>
 <body>
+<div id="wrapper">
+	<form action="login" method="post">
+	<div id="header">
+			<div id="logo">
+				<h1>
+					<a href="#">Facility Booking System</a>
+				</h1>
+			</div>
+			
+			<div id="userInfo">
+					Welcome: ${sessionScope.myUser.userName }
+					<br>
+					Role: ${sessionScope.myUser.role }
+					<br>    
+					<c:url var="logouturl" scope="page" value="login.jsp">
+						<c:param name="InOut" value="false"></c:param>
+					</c:url>
+					<a href="${logouturl}">Logout</a>
+					
+					
+			</div>
+			</div>
+		
+		<div id="menu">
+
+			<ul>
+				<c:forEach var="menuItem" items="${sessionScope.menu}">
+					<li><a href="${menuItem}.jsp">${menuItem}</a></li>
+				</c:forEach>
+			</ul>
+			<br class="clearfix" />
+		</div>
+
+	</form>
+	
+	
+	<table>
+	<tr>
+		<td><img src="images/logo.gif"></td>
+	</tr>
+</table>
 	<form name="userList" id="userList" action="SearchUserServlet"
 		method=post>
-		<center>
+		<div class="left_content">
 			<table cellpadding=5 cellspacing=3 border=1>
 				<tr>
 					<th width="45%">Description</th>
@@ -90,6 +127,7 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="reset" value="Reset">--%>
 		</center>
+		</div>
 	</form>
 
 	<form name="searchList" id="searchList">
@@ -131,5 +169,9 @@
 
 		userFormValidator.setAddnlValidationFunction(DoCustomValidation);*/
 	</script>
+	</div>
+	<div id="footer">
+	Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">FCT</a>.
+</div>
 </body>
 </html>
