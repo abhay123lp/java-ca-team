@@ -3,23 +3,20 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name>FacilityBookingSystem</display-name>
+<!-- 	<display-name>FacilityBookingSystem</display-name> -->
 	<servlet>
 		<servlet-name>SearchFacilityController</servlet-name>
 		<servlet-class>controller.SearchFacilityController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SearchFacilityController</servlet-name>
-		<url-pattern>/SearchFacilityController</url-pattern>
+		<url-pattern>/SearchFacilities</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>SearchFacilitiesLoad</servlet-name>
 		<servlet-class>controller.SearchFacilitiesLoad</servlet-class>
 	</servlet>
-	<!-- <servlet-mapping> -->
-	<!-- <servlet-name>SearchFacilitiesLoad</servlet-name> -->
-	<!-- <url-pattern>/SearchFacilities.jsp</url-pattern> -->
-	<!-- </servlet-mapping> -->
+
 	<servlet>
 		<servlet-name>login</servlet-name>
 		<servlet-class>controller.login</servlet-class>
@@ -28,6 +25,7 @@
 		<servlet-name>login</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<description>
 		</description>
@@ -39,6 +37,7 @@
 		<servlet-name>UserLoad</servlet-name>
 		<url-pattern>/UserLoad</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<description>
 		</description>
@@ -50,6 +49,7 @@
 		<servlet-name>UserProcessServlet</servlet-name>
 		<url-pattern>/UserProcessServlet</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<description>
 		</description>
@@ -57,6 +57,7 @@
 		<servlet-name>DeleteUserServlet</servlet-name>
 		<servlet-class>controller.DeleteUserServlet</servlet-class>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>DeleteUserServlet</servlet-name>
 		<url-pattern>/deleteUser</url-pattern>
@@ -68,6 +69,7 @@
 		<servlet-name>SearchUserServlet</servlet-name>
 		<servlet-class>controller.SearchUserServlet</servlet-class>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>SearchUserServlet</servlet-name>
 		<url-pattern>/SearchUserServlet</url-pattern>
@@ -83,6 +85,7 @@
 		<servlet-name>SGetBookingList</servlet-name>
 		<url-pattern>/SGBL</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<description>
 		</description>
@@ -94,6 +97,7 @@
 		<servlet-name>SLoadBookInfo</servlet-name>
 		<url-pattern>/SLoadBookInfo </url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>ViewBookingReport</servlet-name>
 		<servlet-class>controller.ViewBookingReport</servlet-class>
@@ -104,6 +108,7 @@
 		<url-pattern>/ViewBookingReport</url-pattern>
 	</servlet-mapping>
 	<servlet>
+
 		<servlet-name>BookingStatusView</servlet-name>
 		<servlet-class>controller.BookingStatusView</servlet-class>
 	</servlet>
@@ -111,6 +116,7 @@
 		<servlet-name>BookingStatusView</servlet-name>
 		<url-pattern>/BookingStatusView</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>BookingItemsDetails</servlet-name>
 		<servlet-class>controller.BookingItemsDetails</servlet-class>
@@ -119,6 +125,7 @@
 		<servlet-name>BookingItemsDetails</servlet-name>
 		<url-pattern>/BookingItemsDetails</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>DisplayChart</servlet-name>
 		<servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>
@@ -128,18 +135,86 @@
 		<url-pattern>/DisplayChart</url-pattern>
 	</servlet-mapping>
 	<servlet>
-    <description>
+
+		<description>
 		</description>
-    <display-name>book
-		</display-name>
-    <servlet-name>BookServlet</servlet-name>
-    <servlet-class>controller.BookServlet
-		</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BookServlet</servlet-name>
-    <url-pattern>/book</url-pattern>
-  </servlet-mapping>
+		<display-name>book</display-name>
+		<servlet-name>BookServlet</servlet-name>
+		<servlet-class>controller.BookServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BookServlet</servlet-name>
+		<url-pattern>/book</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<servlet-name>FacilityLoadData</servlet-name>
+		<servlet-class>controller.FacilityLoadData</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description></description>
+		<servlet-name>FacilityTypeLoadData</servlet-name>
+		<servlet-class>controller.FacilityTypeLoadData</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description></description>
+		<servlet-name>ProcessServlet</servlet-name>
+		<servlet-class>controller.ProcessServlet</servlet-class>
+	</servlet>
+
+
+	<servlet>
+		<description></description>
+		<servlet-name>FacilityTypeProcessServlet</servlet-name>
+		<servlet-class>controller.FacilityTypeProcessServlet</servlet-class>
+	</servlet>
+
+
+	<servlet>
+		<description></description>
+		<servlet-name>FacTypeDeleteServlet</servlet-name>
+		<servlet-class>controller.FacTypeDeleteServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description></description>
+		<servlet-name>FacilityDeleteServlet</servlet-name>
+		<servlet-class>controller.FacilityDeleteSevlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FacilityLoadData</servlet-name>
+		<url-pattern>/FacilityCUD</url-pattern>
+<!-- 		<url-pattern>/FacilityCUD.jsp</url-pattern> -->
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FacilityTypeLoadData</servlet-name>
+		<url-pattern>/FacilityTypeCUD</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ProcessServlet</servlet-name>
+		<url-pattern>/process</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FacilityTypeProcessServlet</servlet-name>
+		<url-pattern>/type</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FacilityDeleteServlet</servlet-name>
+		<url-pattern>/deleteFacility</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FacTypeDeleteServlet</servlet-name>
+		<url-pattern>/deleteFacilityType</url-pattern>
+	</servlet-mapping>
 </web-app>
   
  
