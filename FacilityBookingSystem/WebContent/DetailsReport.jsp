@@ -68,7 +68,7 @@
 </head>
 <body>
 <%@ include file="home.jsp"%>
-<div class="wrapper">
+<div id="wrapper">
 <div class="left-content">
 <form action ="ViewBookingReport" method ="post">
     <c:choose>
