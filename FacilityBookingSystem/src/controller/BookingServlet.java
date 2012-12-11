@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +58,14 @@ public class BookingServlet extends HttpServlet {
 		try {
 			try {
 				doProcess(request, response);
-			} catch (BadBookingException | SQLException e) {
+			} catch (BadBookingException e)
+			{
+				request.setAttribute("ErrorMsg",e.getMessage());
+				RequestDispatcher rd;
+				rd=request.getRequestDispatcher("/ErrorPage.jsp");
+				rd.forward(request, response);
+			}
+			catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -67,24 +75,54 @@ public class BookingServlet extends HttpServlet {
 		}
 	}
 	
+	@SuppressWarnings("unused")
+	private java.sql.Date getDate(String s) throws ParseException
+	{
+		s=s.trim();
+		String[] str= s.split("/");
+		System.out.println(str[0]);
+		System.out.println(str[1]);
+		System.out.println(str[2]);
+		int mon=Integer.parseInt(str[0]);
+		int date=Integer.parseInt(str[1]);
+		int year=Integer.parseInt(str[2]);
+		return new java.sql.Date(year-1900,mon-1,date);
+		
+	}
+	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException, BadBookingException, SQLException {
+		RequestDispatcher rd; request.getRequestDispatcher("/SearchFacilities.jsp");
 		Booking newBook= new Booking();
-		DateFormat sf= new SimpleDateFormat("mm/dd/yyyy") ;
+		DateFormat sf= new SimpleDateFormat("MM/dd/yyyy") ;
 		newBook.setBookingID(BookingManager.GenerateBookingID());
-		newBook.setFacilityID((request.getParameter("facilityID")));
-		newBook.setUserID((request.getParameter("UserID")));
+		/*newBook.setFacilityID((request.getParameter("facilityID")));
+		newBook.setUserID((request.getParameter("UserID")));*/
+		newBook.setFacilityID(("F000000003"));
+		newBook.setUserID(("A000000002"));
 		String sDate=request.getParameter("from");
 		System.out.println("sDate"+sDate);
 		String eDate=request.getParameter("to");
 		System.out.println("eDate"+eDate);
-		newBook.setStarttime(new java.sql.Date(sf.parse(sDate).getTime()));
-		newBook.setEndtime(new java.sql.Date(sf.parse(eDate).getTime()));
-		
+		newBook.setStarttime(getDate(sDate));
+		newBook.setEndtime(getDate(eDate));
+		System.out.println(newBook.getEndtime());
+		System.out.println(newBook.getStarttime());
 		newBook.setPriority(request.getParameter("prior").trim());
 		newBook.setReason(request.getParameter("reason").trim());
 		newBook.setStatus(EnumBookStatus.Processing.toString());
 		
-		BookingManager.ValidateBooking(newBook);
+		if(BookingManager.ValidateBooking(newBook))
+		{
+		request.setAttribute("book", BookingManager.getBooking(newBook.getBookingID()));
+		rd=request.getRequestDispatcher("/BookingSucess.jsp");
+		rd.forward(request, response);
+		}
+		
+		else{
+			request.setAttribute("book", null);
+		}
+		
+		}
 	}
 
-}
+
