@@ -19,5 +19,5 @@ public interface FacilityDAO {
 	int countFacility() throws SQLException;
 	List<Facility> searchMatching(Facility facility) throws SQLException;
 	List<Facility> getAllFacilitiesbySearchCriteria(FacilityType ft) throws SQLException;
-	Facility findFacilityName(String facName) throws SQLException;
+	//Facility findFacilityName(String facName) throws SQLException;
 }
