@@ -146,7 +146,7 @@
 		userFormValidator.addValidation("EmailAddress", "email",
 				" EmailAdddress should be a valid email address");
 
-		function DoCustomValidation() {
+		/*function DoCustomValidation() {
 			var userForm = document.forms["userForm"];
 			if (userForm.Role.value == 'staff'
 					|| userForm.Role.value == 'admin')
@@ -159,7 +159,7 @@
 			}
 		}
 
-		userFormValidator.setAddnlValidationFunction(DoCustomValidation);
+		userFormValidator.setAddnlValidationFunction(DoCustomValidation);*/
 	</script>
 </body>
 </html>
