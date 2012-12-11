@@ -54,7 +54,7 @@
 							<td>Facility Capacity</td>
 							<td><input type="text" name="txtCapacity" /></td>
 							<td valign="top"><input type="submit" name="btnSearch"
-								value="search" alt="search" /></td>
+								value="Search" alt="Search" class="button"/></td>
 
 						</tr>
 					</table>
@@ -66,7 +66,7 @@
 
 					<c:choose>
 						<c:when test="${!facilityAl.get(0).getFacAl().equals(null)}">
-							<div class="right-content">
+							<div class="right_content">
 								<table>
 									<tr>
 										<td></td>
@@ -96,7 +96,7 @@
 									</c:forEach>
 									<tr>
 										<td colspan="6" align="center"><input type="submit"
-											name="btnBooking" value="booking" /></td>
+											name="btnBooking" value="Booking" class="button"/></td>
 									</tr>
 								</table>
 							</div>
