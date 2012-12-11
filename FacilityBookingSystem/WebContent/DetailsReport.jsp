@@ -68,6 +68,7 @@
 </head>
 <body>
 <%@ include file="home.jsp"%>
+<div class="wrapper">
 <div class="left-content">
 <form action ="ViewBookingReport" method ="post">
     <c:choose>
@@ -162,6 +163,7 @@
             </table>
          </p>
     </form>
+    </div>
     </div>
    	<%@include file="Footer.jsp"%> 
 </body>
