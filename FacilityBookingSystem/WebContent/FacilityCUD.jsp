@@ -5,11 +5,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css"/>
+<fmt:setBundle basename="messagetitle" />
+<title> <fmt:message key="title"/> </title>
+<!-- </head> -->
+<!-- <body> -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+
+<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-<h1><fmt:message key="label.facility"/></h1>
+<div id="wrapper">
+		<form action="login" method="post">
+			<div id="header">
+				<div id="logo">
+					<h1>
+						<a href="#">Facility Booking System</a>
+					</h1>
+				</div>
+
+				<div id="userInfo">
+					Welcome: ${sessionScope.myUser.userName } <br> Role:
+					${sessionScope.myUser.role } <br>    
+					<c:url var="logouturl" scope="page" value="login.jsp">
+						<c:param name="InOut" value="false"></c:param>
+					</c:url>
+					<a href="${logouturl}">Logout</a>
+
+
+				</div>
+			</div>
+
+			<div id="menu">
+
+				<ul>
+					<c:forEach var="menuItem" items="${sessionScope.menu}">
+						<li><a href="/FacilityBookingSystem/${menuItem}">${menuItem}</a></li>
+					</c:forEach>
+				</ul>
+				<br class="clearfix" />
+			</div>
+
+		</form>
+		<span class="title_icon"><img alt="" src="images/article_icon.png" width="50px" height="55px" vspace="5"></span>
+		&nbsp;
+<h2><fmt:message key="label.facility"/></h2>
         <c:url var="url" scope="page" value="/FacilitySetupPage.jsp">
         		<c:param name="FacID" value=""/>
         		<c:param name="FacName" value=""/>
@@ -53,8 +95,10 @@
                 </tr>
             </c:forEach>
         </table>
-<div id="footer">
+        <div id="footer">
 	Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">FCT</a>.
-</div>
+</div><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+
 </body>
 </html>
