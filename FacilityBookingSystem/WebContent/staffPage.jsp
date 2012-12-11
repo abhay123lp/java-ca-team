@@ -12,7 +12,6 @@
 </head>
 <body>
 	<div id="wrapper">
-		<form action="login" method="post">
 			<div id="header">
 				<div id="logo">
 					<h1>
@@ -35,8 +34,5 @@
 				</ul>
 				<br class="clearfix" />
 			</div>
-
-		</form>
-	</div>
 </body>
 </html>
