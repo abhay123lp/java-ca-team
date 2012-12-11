@@ -118,7 +118,7 @@
 	</form>
 	<script language="JavaScript" type='text/javascript'>
 		
-		function DoCustomValidation() {
+	/*	function DoCustomValidation() {
 			var userForm = document.forms["userList"];
 			if (userForm.Role.value == 'staff'
 					|| userForm.Role.value == 'admin') {
@@ -129,7 +129,7 @@
 			}
 		}
 
-		userFormValidator.setAddnlValidationFunction(DoCustomValidation);
+		userFormValidator.setAddnlValidationFunction(DoCustomValidation);*/
 	</script>
 </body>
 </html>
