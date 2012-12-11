@@ -14,11 +14,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="<c:url value='css/style.css'/>" rel="stylesheet"
 	type="text/css" />
+<link rel="stylesheet" type="text/css" href="style.css"/>
 <fmt:setBundle basename="messages" />
 <title><fmt:message key="user.title" /></title>
 
 </head>
 <body>
+<div id="wrapper">
+		<form action="login" method="post">
+			<div id="header">
+				<div id="logo">
+					<h1>
+						<a href="#">Facility Booking System</a>
+					</h1>
+				</div>
+
+				<div id="userInfo">
+					Welcome: ${sessionScope.myUser.userName } <br> Role:
+					${sessionScope.myUser.role } <br>    
+					<c:url var="logouturl" scope="page" value="login.jsp">
+						<c:param name="InOut" value="false"></c:param>
+					</c:url>
+					<a href="${logouturl}">Logout</a>
+
+
+				</div>
+			</div>
+
+			<div id="menu">
+
+				<ul>
+					<c:forEach var="menuItem" items="${sessionScope.menu}">
+						<li><a href="/FacilityBookingSystem/${menuItem}">${menuItem}</a></li>
+					</c:forEach>
+				</ul>
+				<br class="clearfix" />
+			</div>
+
+		</form>
 	<h1>
 		<fmt:message key="label.User" />
 	</h1>
@@ -75,7 +108,10 @@
 			</tr>
 		</c:forEach>
 	</table>
-
+<div id="footer">
+	Copyright (c) 2012 FBS.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">Team 4</a>.
+</div>
+        </div>
 
 </body>
 </html>
