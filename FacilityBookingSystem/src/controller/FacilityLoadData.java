@@ -96,10 +96,8 @@ public class FacilityLoadData extends HttpServlet {
 			try {
 				rd.forward(request, response);
 			} catch (ServletException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

@@ -28,7 +28,6 @@ public class FacTypeDeleteServlet extends HttpServlet {
 		try {
 			doProcess(request, response);
 		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -38,7 +37,6 @@ public class FacTypeDeleteServlet extends HttpServlet {
 		try {
 			doProcess(request, response);
 		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

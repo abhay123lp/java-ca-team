@@ -28,7 +28,6 @@ public class FacilityDeleteSevlet extends HttpServlet {
 		try {
 			doProcess(request, response);
 		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -24,10 +24,9 @@ public class FacilityTypeManager {
 		try {
 			currentFacType = facTypeDAO.getFacilityType(TypeID);
 		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return currentFacType;
