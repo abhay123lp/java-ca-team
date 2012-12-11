@@ -52,7 +52,7 @@ public class ConfirmBooking extends HttpServlet {
 		} catch (MessagingException e) {
 			request.setAttribute("ErrorMsg",e.getMessage());
 			RequestDispatcher rd;
-			rd=request.getRequestDispatcher("/ErrorPage.jsp");
+			rd=request.getRequestDispatcher("Error.jsp");
 			rd.forward(request, response);
 		}
 	}
@@ -62,7 +62,7 @@ public class ConfirmBooking extends HttpServlet {
 		String strmsg=request.getParameter("facilityID")+request.getParameter("UserID")+request.getParameter("from")+request.getParameter("to")
 				+request.getParameter("prior")+request.getParameter("reason");
 		String id=request.getParameter("mgrID");
-		RequestDispatcher rd=request.getRequestDispatcher("AdminPage/.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("adminPage.jsp");
 		rd.forward(request, response);
 		BookingManager.SendMailToManager(id,strmsg);
 		// TODO Auto-generated method stub
