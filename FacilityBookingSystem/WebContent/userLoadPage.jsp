@@ -1,6 +1,7 @@
 
+<%@page import="org.apache.tiles.ognl.SessionScopeNestedObjectExtractor"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	errorPage="error.jsp" session="false" pageEncoding="ISO-8859-1"%>
+	errorPage="Error.jsp" session="false" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,6 +21,7 @@
 
 </head>
 <body>
+<%@ include file="home.jsp"%>
 <div id="wrapper">
 		<form action="login" method="post">
 			<div id="header">
@@ -111,7 +113,11 @@
 <div id="footer">
 	Copyright (c) 2012 FBS.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">Team 4</a>.
 </div>
-        </div>
+        </div><div id="footer">
+		Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a
+			href="http://www.freecsstemplates.org">FCT</a>.
+	</div>
+	<%@include file="Footer.jsp"%>
 
 </body>
 </html>
