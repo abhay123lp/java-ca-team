@@ -110,18 +110,10 @@ public class FacilityManager {
 		}
 	}
 
-	public boolean IsCheckedFacilityName(Facility f) {
-		String facName = null;
-		try {
-			facName = fDao.findFacilityName(f.getFacName()).getFacName();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (facName == null)
-			return true;
-		else
-			return false;
-	}
+//	public boolean IsCheckedFacilityName(Facility f) {
+//
+//		return fDao.findFacilityName(f.getFacName());
+//	}
+		
 
 }
