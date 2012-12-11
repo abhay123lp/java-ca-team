@@ -24,6 +24,7 @@
 			defaultDate : "+1w",
 			changeMonth : true,
 			minDate : 0,
+			maxDate: 90,
 			numberOfMonths : 1,
 			beforeShowDay : checkForHolidays,
 			onClose : function(selectedDate) {
@@ -70,7 +71,7 @@
 			</tr>
 			<tr>
 				<td>UserID:</td>
-				<td><input type="text" name="UserID" value=<%=session.getAttribute("myUserName")%>
+				<td><input type="text" name="UserID" value=<%=session.getAttribute("myUserID")%>
 					readonly="readonly"></td>
 			</tr>
 			<tr>
@@ -92,9 +93,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="save"> <input
-					type="reset" value="reset"> <input type="submit"
-					value="back"></td>
+				<td><input type="image" value="save" src="images/SubmitButton.png"> <input
+					type="image" value="reset" src="images/ResetButton.png"> 
 			</tr>
 			<tr>
 			<td colspan=4>
