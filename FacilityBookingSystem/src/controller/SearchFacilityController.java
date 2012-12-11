@@ -80,22 +80,12 @@ public class SearchFacilityController extends HttpServlet {
 			user = (User) request.getSession().getAttribute("myUser");
 			if (user.getRole().equals(EnumUserRole.Staff.toString())
 					|| user.getRole().equals(EnumUserRole.Manager.toString())) {
+
 				String searchbtnClick = request.getParameter("btnSearch");
 				String bookingClick = request.getParameter("btnBooking");
 
 				if (searchbtnClick == null && bookingClick == null) {
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/SearchFacilities.jsp");
-					ArrayList<SearchFacility> cal = new ArrayList<SearchFacility>();
-					SearchFacility sf = new SearchFacility();
-					sf.setFacTypeAl(getAllFacilityType());
-					FacilityType ft = new FacilityType();
-					ft.setCapacity("1");
-					ft.setTypeID(0);
-					sf.setFacAL(FindFacility(ft));
-					cal.add(sf);
-					request.setAttribute("facilityAl", cal);
-					rd.forward(request, response);
+					PageRedirect(request, response);
 				} else {
 					if (searchbtnClick != null) {
 						if (searchbtnClick.equals("search")) {
@@ -112,8 +102,7 @@ public class SearchFacilityController extends HttpServlet {
 				rd.forward(request, response);
 			}
 		} else {
-			RequestDispatcher rd = request
-					.getRequestDispatcher("/login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
 			rd.forward(request, response);
 		}
 	}
@@ -134,15 +123,11 @@ public class SearchFacilityController extends HttpServlet {
 			facilityType.setCapacity(cap);
 			facilityType.setTypeID(Integer.parseInt(request
 					.getParameter("cboFacilityType")));
-
 			List<SearchFacility> cl = new ArrayList<SearchFacility>();
 			SearchFacility sf = new SearchFacility();
 			sf.setFacTypeAl(getAllFacilityType());
 			sf.setFacAL(FindFacility(facilityType));
 			cl.add(sf);
-			String s1 = sf.getFacAl().get(0).getFacilityCapacity();
-			String s2 = sf.getFacAl().get(0).getFacilityDescription();
-			String s3 = sf.getFacAl().get(0).getFadcilityTypeName();
 			request.setAttribute("facilityAl", cl);
 			rd.forward(request, response);
 
@@ -155,14 +140,17 @@ public class SearchFacilityController extends HttpServlet {
 
 	public void bookingbuttonClick(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		String facID = request.getParameter("group1");
+	
 		if (request.getParameter("group1") != null) {
+			String facID = request.getParameter("group1");
 			HttpSession facilityID = request.getSession(true);
 			facilityID.setAttribute("facID", facID);
-			String site = new String("/SearchFacilities.jsp");
-			response.setStatus(response.SC_MOVED_TEMPORARILY);
-			response.setHeader("Location", site);
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/MakeBooking.jsp");
+			request.setAttribute("facID", facID);
+			rd.forward(request, response);
+		} else {			
+			PageRedirect(request, response);
 		}
 	}
 
@@ -177,6 +165,35 @@ public class SearchFacilityController extends HttpServlet {
 			throws FacilityException {
 		return fm.FindFacility(ft);
 
+	}
+
+	public void PageRedirect(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<SearchFacility> cal = new ArrayList<SearchFacility>();
+		SearchFacility sf = new SearchFacility();
+		try {
+			sf.setFacTypeAl(getAllFacilityType());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FacilityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		FacilityType ft = new FacilityType();
+		ft.setCapacity("1");
+		ft.setTypeID(0);
+		try {
+			sf.setFacAL(FindFacility(ft));
+		} catch (FacilityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cal.add(sf);
+		RequestDispatcher rd = request
+				.getRequestDispatcher("/SearchFacilities.jsp");
+		request.setAttribute("facilityAl", cal);
+		rd.forward(request, response);
 	}
 
 }
