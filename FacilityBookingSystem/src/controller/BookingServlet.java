@@ -91,14 +91,14 @@ public class BookingServlet extends HttpServlet {
 	}
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException, BadBookingException, SQLException {
-		RequestDispatcher rd; request.getRequestDispatcher("/SearchFacilities.jsp");
+		RequestDispatcher rd;
 		Booking newBook= new Booking();
-		DateFormat sf= new SimpleDateFormat("MM/dd/yyyy") ;
+	/*	DateFormat sf= new SimpleDateFormat("MM/dd/yyyy") ;*/
 		newBook.setBookingID(BookingManager.GenerateBookingID());
-		/*newBook.setFacilityID((request.getParameter("facilityID")));
-		newBook.setUserID((request.getParameter("UserID")));*/
-		newBook.setFacilityID(("F000000003"));
-		newBook.setUserID(("A000000002"));
+		newBook.setFacilityID((request.getParameter("facilityID")));
+		newBook.setUserID((request.getParameter("UserID")));
+		/*newBook.setFacilityID(("F000000003"));
+		newBook.setUserID(("A000000002"));*/
 		String sDate=request.getParameter("from");
 		System.out.println("sDate"+sDate);
 		String eDate=request.getParameter("to");
@@ -113,13 +113,14 @@ public class BookingServlet extends HttpServlet {
 		
 		if(BookingManager.ValidateBooking(newBook))
 		{
-		request.setAttribute("book", BookingManager.getBooking(newBook.getBookingID()));
+			Booking b=BookingManager.getBooking(newBook.getBookingID());
+		request.setAttribute("booking",b);
 		rd=request.getRequestDispatcher("/BookingSucess.jsp");
 		rd.forward(request, response);
 		}
 		
 		else{
-			request.setAttribute("book", null);
+			request.setAttribute("booking", null);
 		}
 		
 		}
