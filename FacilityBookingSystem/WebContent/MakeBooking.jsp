@@ -68,39 +68,50 @@
 </head>
 <body>
 <%@ include file="home.jsp"%>
+<div class="wrapper">
+<div class="left_content">
+<span class="title_icon"><img alt="" src="images/bookingreport.jpg" width="50px" height="55px"></span>
+    <p class="style1"><u>Booking</u></p>
+    
+		
 	<form id="BookingForm" method="post" action="book" name="book">
 		<table>
 			<tr>
-				<td>FacilityID:</td>
+				<td><b>FacilityID:</b></td>
 				<td><input type="text" name="facilityID" value=<%=session.getAttribute("facID") %>
 					readonly="readonly"></td>
 			</tr>
 			<tr>
-				<td>UserID:</td>
+				<td><b>UserID:</b></td>
 				<td><input type="text" name="UserID" value=<%=session.getAttribute("myUserID")%>
 					readonly="readonly"></td>
 			</tr>
 			<tr>
-				<td><label for="bookedfrom">From date</label></td>
+				<td><label for="bookedfrom"><b>From date:</b></label></td>
 				<td><input type="text" id="bookedfrom" name="from" /></td>
 			</tr>
 			<tr>
-				<td><label for="bookedtill">to</label></td>
+				<td><label for="bookedtill"><b>To:</b></label></td>
 				<td><input type="text" id="bookedtill" name="to" /></td>
 			</tr>
 			<tr>
-				<td><input type="radio" id="prior" name="prior" value="H">High</input></td>
-				<td><input type="radio" id="prior" name="prior" value="M">Medium</input></td>
-				<td><input type="radio" id="prior" name="prior" value="L">Low</input></td>
-			</tr>
-			<tr>
-				<td><label for="Reason">Reason:</label></td>
-				<td><textarea id="reason" name="reason" rows="4" cols="20">  </textarea>
+			
+				<td></td>
+				<td>
+				<input type="radio" id="prior" name="prior" value="H">High</input>
+				<input type="radio" id="prior" name="prior" value="M">Medium</input>
+				<input type="radio" id="prior" name="prior" value="L">Low</input>
 				</td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="save" class="button"> <input
-					type="reset" value="reset" class="button" > 
+				<td><label for="Reason"><b>Reason:</b></label></td>
+				<td><textarea id="reason" name="reason" rows="4" cols="15">  </textarea>
+				</td>
+			</tr>
+			<tr>
+				
+				<td><input type="submit" value="save" class="button"> 
+				<input type="reset" value="reset" class="button" ></td> 
 			</tr>
 			<tr>
 			<td colspan=4>
@@ -109,6 +120,8 @@
 			</tr>
 		</table>
 	</form>
+	
+	</div>
 	<script language="JavaScript" type='text/javascript'>
 		var bookingFormValidator = new Validator("BookingForm");
 		bookingFormValidator.EnableOnPageErrorDisplaySingleBox();
@@ -122,6 +135,6 @@
 		bookingFormValidator.addValidation("reason", "req",
 				" Please enter reason");
 	</script>
-
+</div>
 </body>
 </html>

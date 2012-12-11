@@ -13,45 +13,14 @@
 <title>Search User</title>
 <script language="JavaScript" src="script/gen_validatorv4.js"
 	type="text/javascript"></script>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
-	type="text/css" />
+<%-- <link href="<c:url value='/css/style.css'/>" rel="stylesheet" --%>
+<!-- 	type="text/css" /> -->
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	
 </head>
 <body>
 <%@ include file="home.jsp"%>
-	<div id="wrapper">
-		<form action="login" method="post">
-			<div id="header">
-				<div id="logo">
-					<h1>
-						<a href="#">Facility Booking System</a>
-					</h1>
-				</div>
-
-				<div id="userInfo">
-					Welcome: ${sessionScope.myUser.userName } <br> Role:
-					${sessionScope.myUser.role } <br>    
-					<c:url var="logouturl" scope="page" value="login.jsp">
-						<c:param name="InOut" value="false"></c:param>
-					</c:url>
-					<a href="${logouturl}">Logout</a>
-
-
-				</div>
-			</div>
-
-			<div id="menu">
-
-				<ul>
-					<c:forEach var="menuItem" items="${sessionScope.menu}">
-						<li><a href="${menuItem}.jsp">${menuItem}</a></li>
-					</c:forEach>
-				</ul>
-				<br class="clearfix" />
-			</div>
-
-		</form>
-
-
+<div class="left-content">
 		<table>
 			<tr>
 				<td><img src="images/logo.gif"></td>
@@ -59,7 +28,6 @@
 		</table>
 		<form name="userList" id="userList" action="SearchUserServlet"
 			method=post>
-			<div class="left_content">
 				<table cellpadding=5 cellspacing=3 border=1>
 					<tr>
 						<th width="45%">Description</th>
@@ -86,14 +54,6 @@
 								<option value="manager">manager</option>
 						</select></td>
 					</tr>
-					<%-- 	
-			<tr>
-				<td><fmt:message key="setup.Role" /></td>
-				<td><input type="text" name="Role" value="${param['Role']}"
-					size=15 maxlength=20></td>
-			</tr>
-			--%>
-
 					<tr>
 						<td><fmt:message key="setup.ContactNo" /></td>
 						<td><input type="text" name="ContactNo"
@@ -113,17 +73,11 @@
 						</tr>
 					</c:if>
 				</table>
-
-				<%-- <input align="middle" type='image' name='Submit' id='userSubmit'
-				src='images/SubmitButton.png' alt='submit' class='loading_div' /> <input
-				align="middle" type='image' name='Reset' id='userRest'
-				src='images/ResetButton.png' alt='reset' />--%>
-
-				&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit">
+				&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit" class="button">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="Reset">
+				<input type="reset" value="Reset" class="button">
 				</center>
-			</div>
+		
 		</form>
 
 		<form name="searchList" id="searchList">
@@ -150,6 +104,7 @@
 			</table>
 
 		</form>
+		</div>
 		<script language="JavaScript" type='text/javascript'>
 			/*	function DoCustomValidation() {
 					var userForm = document.forms["userList"];
@@ -164,11 +119,8 @@
 
 				userFormValidator.setAddnlValidationFunction(DoCustomValidation);*/
 		</script>
-	</div>
-	<div id="footer">
-		Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a
-			href="http://www.freecsstemplates.org">FCT</a>.
-	</div>
+
+	
 	<%@include file="Footer.jsp"%>
 </body>
 </html>
