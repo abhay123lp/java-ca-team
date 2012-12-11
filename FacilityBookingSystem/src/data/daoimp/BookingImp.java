@@ -281,12 +281,12 @@ public class BookingImp extends BaseConnection implements BookingDAO{
 
         if (valueObject.getStarttime() != null) {
             if (first) { first = false; }
-            sql.append("AND StartTime = '").append(valueObject.getStarttime()).append("' ");
+            sql.append("AND StartTime between '").append(valueObject.getStarttime()).append("'  And '").append(valueObject.getEndtime()).append("'");
         }
 
         if (valueObject.getEndtime() != null) {
             if (first) { first = false; }
-            sql.append("AND EndTime = ").append(valueObject.getEndtime()).append(" ");
+            sql.append("AND EndTime between '").append(valueObject.getStarttime()).append("'  And '").append(valueObject.getEndtime()).append("'");
         }
 
         if (valueObject.getStatus() != null) {
