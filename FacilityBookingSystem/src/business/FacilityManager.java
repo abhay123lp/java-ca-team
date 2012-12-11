@@ -11,21 +11,24 @@ import exception.FacilityException;
 import exception.NotFoundException;
 
 public class FacilityManager {
-	FacilityDAO fDao=null;
-	FacilityTypeDAO ftDao=null;
-	public FacilityManager(){
-		fDao=DAOFactory.getFacilityDAO();
-		ftDao=DAOFactory.getFacilityTypeDAO();
+	FacilityDAO fDao = null;
+	FacilityTypeDAO ftDao = null;
+
+	public FacilityManager() {
+		fDao = DAOFactory.getFacilityDAO();
+		ftDao = DAOFactory.getFacilityTypeDAO();
 	}
-	
-	public List<FacilityType> getAllFacilityType() throws SQLException, FacilityException {
-		List<FacilityType> factypeList=null;	
+
+	public List<FacilityType> getAllFacilityType() throws SQLException,
+			FacilityException {
+		List<FacilityType> factypeList = null;
 		factypeList = ftDao.getAllFacilityType();
 		return factypeList;
 	}
-	
-	public List<Facility> FindFacility(FacilityType ft) throws FacilityException{
-		List<Facility> facList=null;	
+
+	public List<Facility> FindFacility(FacilityType ft)
+			throws FacilityException {
+		List<Facility> facList = null;
 		try {
 			facList = fDao.getAllFacilitiesbySearchCriteria(ft);
 		} catch (SQLException e) {
@@ -33,9 +36,9 @@ public class FacilityManager {
 			e.printStackTrace();
 		}
 		return facList;
-	
+
 	}
-	
+
 	@SuppressWarnings("finally")
 	public ArrayList<Facility> findAllFacility() {
 		ArrayList<Facility> currentList = new ArrayList<Facility>();
@@ -45,7 +48,7 @@ public class FacilityManager {
 			return currentList;
 		}
 	}
-	
+
 	public void insertFacility(Facility facility) {
 		try {
 			fDao.addFacility(facility);
@@ -84,14 +87,19 @@ public class FacilityManager {
 		String facID = null;
 		try {
 			facID = fDao.getFacility(f.getFacID()).getFacID();
-		} finally {
-			if (facID == null)
-				return true;
-			else
-				return false;
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		if (facID == null)
+			return true;
+		else
+			return false;
 	}
-	
+
 	@SuppressWarnings("finally")
 	public Facility findFacility(String FacID) {
 		Facility currentFac = new Facility();
@@ -101,17 +109,19 @@ public class FacilityManager {
 			return currentFac;
 		}
 	}
-	
-	public boolean IsCheckedFacilityName(Facility f){
+
+	public boolean IsCheckedFacilityName(Facility f) {
 		String facName = null;
 		try {
 			facName = fDao.findFacilityName(f.getFacName()).getFacName();
-		} finally {
-			if (facName == null)
-				return true;
-			else
-				return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		if (facName == null)
+			return true;
+		else
+			return false;
 	}
 
 }
