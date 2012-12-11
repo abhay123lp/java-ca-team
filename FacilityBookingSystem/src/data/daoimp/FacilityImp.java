@@ -292,7 +292,7 @@ public class FacilityImp extends BaseConnection implements FacilityDAO {
 	public List<Facility> getAllFacilitiesbySearchCriteria(FacilityType ft)
 			throws SQLException {
 
-		ResultSet rs = null;	
+		ResultSet rs = null;
 		String sql = "";
 		if (Integer.parseInt(ft.getCapacity()) == 1 && ft.getTypeID() == 0) {
 			sql = "SELECT f.*,ft.* FROM facilitybooking.facilityType ft,facilitybooking.facility f WHERE ft.TypeID=f.TypeID";
@@ -300,7 +300,8 @@ public class FacilityImp extends BaseConnection implements FacilityDAO {
 		} else if (Integer.parseInt(ft.getCapacity()) > 1
 				&& ft.getTypeID() == 0) {
 			sql = "SELECT f.*,ft.* FROM facilitybooking.facilityType ft,facilitybooking.facility f WHERE ft.capacity="
-					+ Integer.parseInt(ft.getCapacity()) + " AND f.TypeID=ft.TypeID";
+					+ Integer.parseInt(ft.getCapacity())
+					+ " AND f.TypeID=ft.TypeID";
 
 		} else if (Integer.parseInt(ft.getCapacity()) == 1
 				&& ft.getTypeID() > 0) {
@@ -316,7 +317,7 @@ public class FacilityImp extends BaseConnection implements FacilityDAO {
 					+ ") AND f.TypeID=ft.TypeID";
 		}
 		rs = null;
-		java.sql.Statement stmt = conn.createStatement();	
+		java.sql.Statement stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		ArrayList<Facility> searchResults = new ArrayList<Facility>();
 		while (rs.next()) {
@@ -332,23 +333,20 @@ public class FacilityImp extends BaseConnection implements FacilityDAO {
 		return searchResults;
 	}
 
-	@Override
-	public Facility findFacilityName(String facName) throws SQLException {		
-		
-		String sql = "SELECT * FROM Facility WHERE (FacID = ? ) ";
-		PreparedStatement stmt = null;
-
-		try {
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1,facName);
-			List<Facility> searchResults = listQuery(stmt);
-			if (stmt != null)
-				stmt.close();
-			return searchResults.get(0);
-
-		} finally {
-			if (stmt != null)
-				stmt.close();
-		}
-	}
+//	@Override
+//	public boolean findFacilityName(String facName) throws SQLException {
+//
+//		String sql = "SELECT * FROM Facility WHERE (FacName = ? ) ";
+//		PreparedStatement stmt = null;
+//		Facility f = createFacility();
+//		boolean flag = false;
+//		stmt = conn.prepareStatement(sql);
+//		stmt.setString(1, facName);
+//		ResultSet rs = stmt.executeQuery();
+//		if (rs != null)
+//			return false;
+//		else
+//			return true;
+//
+//	}
 }
