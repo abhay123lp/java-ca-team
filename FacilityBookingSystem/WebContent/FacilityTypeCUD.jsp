@@ -55,17 +55,6 @@
 
 
 <h3><u><fmt:message key="label.facilityType"/></u></h3>
-        <c:url var="url" scope="page" value="/FacilitySetupPage.jsp">
-        		<c:param name="FacID" value=""/>
-        		<c:param name="FacName" value=""/>
-                <c:param name="FacUsage" value=""/>
-                <c:param name="TypeID" value=""/>
-                <c:param name="insert" value="true"/>
-        </c:url>
-        
-        
-        <a href="${url}"><fmt:message key="label.facility.add"/></a>
-        <br/><br/>
         
         <c:url var="urltype" scope="page" value="/FacilityTypeSetUpPage.jsp">
          		<c:param name="TypeID" value=""/> 

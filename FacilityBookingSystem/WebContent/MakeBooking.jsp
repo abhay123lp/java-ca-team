@@ -6,6 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
+	type="text/css" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Booking details</title>
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
@@ -60,8 +64,10 @@
 </script>
 <script language="JavaScript" src="script/gen_validatorv4.js"
 	type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
+<%@ include file="home.jsp"%>
 	<form id="BookingForm" method="post" action="book" name="book">
 		<table>
 			<tr>
