@@ -27,7 +27,6 @@ public class FacilityTypeProcessServlet extends javax.servlet.http.HttpServlet
 		try {
 			processRequest(request, response);
 		} catch (SQLException | NotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -37,7 +36,6 @@ public class FacilityTypeProcessServlet extends javax.servlet.http.HttpServlet
 		try {
 			processRequest(request, response);
 		} catch (SQLException | NotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

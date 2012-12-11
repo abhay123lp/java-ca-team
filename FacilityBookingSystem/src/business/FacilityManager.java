@@ -32,7 +32,7 @@ public class FacilityManager {
 		try {
 			facList = fDao.getAllFacilitiesbySearchCriteria(ft);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return facList;

@@ -28,7 +28,7 @@ public class FacilityTypeLoadData extends HttpServlet {
      */
     public FacilityTypeLoadData() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
 	/**
