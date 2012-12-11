@@ -9,7 +9,6 @@
 </head>
 <body>
 	<div id="wrapper">
-		<form action="login" method="post">
 			<div id="header">
 				<div id="logo">
 					<h1>
@@ -23,8 +22,6 @@
 						<c:param name="InOut" value="false" />
 					</c:url>
 					<a href="${logouturl}">Logout</a>
-
-
 				</div>
 			</div>
 			<div id="menu">
@@ -40,8 +37,6 @@
 				</ul>
 				<br class="clearfix" />
 			</div>
-
-		</form>
 	</div>
 </body>
 </html>

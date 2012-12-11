@@ -13,6 +13,7 @@
 .even {
 	background-color: #EFFBEF;
 }
+
 .odd {
 	background-color: white;
 }
@@ -48,17 +49,20 @@
 									<c:forEach var="current"
 										items="${facilityAl.get(0).getFacTypeAl()}">
 										<option value="${current.getTypeID()}">${current.getTypeName()}</option>
-									</c:forEach>
-							</select></td>
+									</c:forEach> 
+							</select>
+							
+							</td>
 							<td>Facility Capacity</td>
 							<td><input type="text" name="txtCapacity" /></td>
 							<td valign="top"><input type="submit" name="btnSearch"
-								value="Search" alt="Search" class="button"/></td>
+								value="Search" alt="Search" class="button" /></td>
 
 						</tr>
 					</table>
+					
 				</fieldset>
-			</div>
+			</div>			
 			<div id="page">
 				<fieldset>
 					<legend>Search Result</legend>
@@ -95,7 +99,7 @@
 									</c:forEach>
 									<tr>
 										<td colspan="6" align="center"><input type="submit"
-											name="btnBooking" value="Booking" class="button"/></td>
+											name="btnBooking" value="Booking" class="button" /></td>
 									</tr>
 								</table>
 							</div>
