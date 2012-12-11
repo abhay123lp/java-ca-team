@@ -62,6 +62,27 @@ public class BookingManager {
 		DAOFactory.getBookingDAO().create(NewBooking);
 	}
 	
+	public static boolean ValidateBooking(Booking NewBooking)throws BadBookingException, SQLException
+	{
+		boolean rightbooking = true;
+		String errorMsg = "";
+		if(IsOverlapForUser(NewBooking))
+		{
+			rightbooking = false;
+			errorMsg+="You have another booking in same time!:";
+		}
+		else{  
+			if(NewBooking.getPriority()==EnumPriority.High.toString()){
+				if(IsIllegalHighPriority(NewBooking)){
+					rightbooking = false;
+					errorMsg+="High priority booking cannot be done for this month!";
+				}
+			}
+		}
+		if(rightbooking) return true;
+		else throw new BadBookingException(errorMsg);
+	}
+	
 	public static void ValidateBooking(Booking NewBooking)throws BadBookingException, SQLException
 	{
 		
@@ -82,9 +103,7 @@ public class BookingManager {
 				ConfirmBooking(NewBooking);
 
 		}
-		
-		
-		
+	
 	}
 	
 	public static String GenerateBookingID()
