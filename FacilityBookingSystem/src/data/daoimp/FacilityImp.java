@@ -218,8 +218,7 @@ public class FacilityImp extends BaseConnection implements FacilityDAO {
 
 		sql.append("ORDER BY FacID ASC ");
 
-		// Prevent accidential full table results.
-		// Use loadAll if all rows must be returned.
+		
 		if (first)
 			searchResults = new ArrayList<Facility>();
 		else
