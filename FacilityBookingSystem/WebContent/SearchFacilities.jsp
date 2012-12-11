@@ -20,21 +20,10 @@
 </style>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 
-</style>
-<title>FacilityBooking System Search Facility</title>
-<style>
-.even {
-	background-color: #EFFBEF;
-}
-
-.odd {
-	background-color: white;
-}
-</style>
 </head>
 <body>
 	<%@ include file="home.jsp"%>
-	<div id="wrapper">
+	<div class="wrapper">
 	<div class="left-content">
 		<form action="/FacilityBookingSystem/SearchFacilities" method="post">
 			<div id="page">
@@ -44,14 +33,13 @@
 					<table border="0">
 						<tr>
 							<td>Facility Type</td>
-							<td valign="top"><select NAME="cboFacilityType">
+							<td >
+							<select NAME="cboFacilityType">
 									<option value="0">All</option>
 									<c:forEach var="current"
 										items="${facilityAl.get(0).getFacTypeAl()}">
 										<option value="${current.getTypeID()}">${current.getTypeName()}</option>
-									</c:forEach> 
-							</select>
-							
+									</c:forEach>
 							</td>
 							<td>Facility Capacity</td>
 							<td><input type="text" name="txtCapacity" /></td>
@@ -59,14 +47,12 @@
 								value="Search" alt="Search" class="button" /></td>
 
 						</tr>
-					</table>
-					
+					</table>					
 				</fieldset>
 			</div>			
 			<div id="page">
 				<fieldset>
 					<legend>Search Result</legend>
-
 					<c:choose>
 						<c:when test="${!facilityAl.get(0).getFacAl().equals(null)}">
 							<div class="right_content">
@@ -89,7 +75,7 @@
 											<c:if test="${status.index!=0 }">
 												<td align="center"><input type="radio" name="group1"
 													value="${current.getFacID()}" /></td>
-											</c:if>
+											</c:if>											
 											<td>${current.getFacName()}
 											<td>${current.getFacUsage()}</td>
 											<td>${current.getFadcilityTypeName()}</td>
