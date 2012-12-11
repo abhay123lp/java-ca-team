@@ -129,6 +129,10 @@ public class BookingManager {
 	{
 		boolean rightbooking = true;
 		String errorMsg = "";
+		if(NewBooking.getEndtime().before(NewBooking.getStarttime())){
+			rightbooking = false;
+			errorMsg+="Startdate must before enddate!:";
+		}
 		if(IsOverlapForUser(NewBooking))
 		{
 			rightbooking = false;

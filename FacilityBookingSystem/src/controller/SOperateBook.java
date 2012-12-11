@@ -95,7 +95,7 @@ public class SOperateBook extends HttpServlet {
 			this.opbook.setEndtime(this.bd.generateSQLDate(newet));
 			this.opbook.setReason(newres);
 			//Make the update book check
-			if(BookingManager.ValidateBooking(this.opbook)){
+			if(BookingManager.ValidateBookingUpdate(this.opbook)){
 				//Real update
 				request.setAttribute("badbooking", 0);
 				this.doSave(request, response);
