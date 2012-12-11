@@ -136,5 +136,6 @@
 				" Please enter reason");
 	</script>
 </div>
+<%@include file="Footer.jsp"%>
 </body>
 </html>
