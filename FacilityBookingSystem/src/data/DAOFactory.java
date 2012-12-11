@@ -16,4 +16,12 @@ public abstract class DAOFactory {
 	public static FacilityTypeDAO getFacilityTypeDAO(){
 		return new FacilityTypeImp();
 	}
+	public static UsageDAO getUsageDAO()
+	{
+		return new UsageImp();
+	}
+	public static DateUsageDAO getDateUsageDAO()
+	{
+		return new DateUsageImp();
+	}
 }
