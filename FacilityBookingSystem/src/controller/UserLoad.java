@@ -18,12 +18,12 @@ import business.UserManager;
 
 public class UserLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    public UserLoad() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+
+	public UserLoad() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,9 +42,10 @@ public class UserLoad extends HttpServlet {
 		UserManager um=new UserManager();
 		List<User> data=um.findAllUser();
 		request.setAttribute("UserTable", data);
+
 		RequestDispatcher rd=request.getRequestDispatcher("/userLoadPage.jsp");
 		rd.forward(request, response);
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
