@@ -13,34 +13,6 @@
 <body>
 <div id="wrapper">
 	<form action="login" method="post">
-		<%-- 		<center> --%>
-		<!-- 			<table border="2"> -->
-		<!-- 				<tr> -->
-		<%-- 					<td colspan="2"><fmt:message key="title"></fmt:message></td> --%>
-		<%-- 					<td>Welcome: <%=session.getAttribute("myUserName")%> <br> --%>
-		<%-- 						Root: <%=session.getAttribute("myUserRole") %> <br> <input --%>
-		<!-- 						type="submit" name="submit" value="Logout" /> <input -->
-		<!-- 						type="hidden" name="InOut" value="false" /> -->
-		<!-- 					</td> -->
-		<!-- 				</tr> -->
-		<!-- 				<tr> -->
-		<!-- 					<td rowspan="2" width="200" height="350"> -->
-		<!-- 						<ul> -->
-		<%-- 							<c:forEach var="menuItem" items="${sessionScope.menu}"> --%>
-		<%-- 								<li><a href="${menuItem}.jsp">${menuItem}</a></li> --%>
-		<%-- 							</c:forEach> --%>
-		<!-- 						</ul> -->
-		<!-- 					</td> -->
-		<!-- 					<td width="420">Operation Area</td> -->
-		<!-- 				</tr> -->
-		<!-- 				<tr> -->
-
-		<!-- 				</tr> -->
-		<!-- 				<tr> -->
-		<!-- 					<td colspan="2">ISS NUS</td> -->
-		<!-- 				</tr> -->
-		<!-- 			</table> -->
-		<%-- 		</center> --%>
 		<div id="header">
 			<div id="logo">
 				<h1>
@@ -66,7 +38,7 @@
 
 			<ul>
 				<c:forEach var="menuItem" items="${sessionScope.menu}">
-					<li><a href="${menuItem}.jsp">${menuItem}</a></li>
+					<li><a href="/FacilityBookingSystem/${menuItem}">${menuItem}</a></li>
 				</c:forEach>
 			</ul>
 			<br class="clearfix" />
