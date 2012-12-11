@@ -12,7 +12,31 @@
     <link rel="stylesheet" type="text/css" href="resource/Jcal/css/border-radius.css" />
     <link rel="stylesheet" type="text/css" href="resource/Jcal/css/reduce-spacing.css" />
     <link rel="stylesheet" type="text/css" href="resource/Jcal/css/win2k/win2k.css" />
-
+    <style type="text/css">
+    	.Pagebutton{
+    		background-color: #209D9D;
+    		width: 60px;
+    		height: 30px;
+    		color: white;
+    	};
+    </style>
+    <script type="text/javascript">
+    	publicHoliDays = [ [ 1, 1, 'Newyear' ], [ 2, 10, 'chinese new year' ],
+           			[ 2, 11, 'Chinese new year' ], [ 3, 29, 'GoodFriday' ],
+           			[ 4, 21, 'LabourDay' ], [ 4, 24, 'vesak day' ],
+           			[ 8, 8, 'Har raya pusua' ], [ 8, 9, 'National Day' ],
+           			[ 10, 15, 'hari raya Haji' ], [ 11, 3, 'Deepavali' ],
+           			[ 12, 25, 'chirstmas Day' ] ];
+	    function checkForHolidays(date) {
+			for ( var i = 0; i < publicHoliDays.length; i++) {
+				if (date.getMonth() == publicHoliDays[i][0] - 1
+						&& date.getDate() == publicHoliDays[i][1]) {
+					return true;
+				}
+			}
+			return false;
+		}
+    </script>
 </head>
 <body>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -84,7 +108,7 @@
 	<c:when test="${requestScope.update==1}">
 		<td>
 		<input type="text" name="starttime" id="s_d" value="${booking.starttime}"/><button id="f_pickS">.</button>
-		<script type="text/javascript">//<![CDATA[
+		<script type="text/javascript">//<![CDATA[                              
 			      Calendar.setup({
 			        inputField : "s_d",
 			        trigger    : "f_pickS",
@@ -92,6 +116,7 @@
 			        disabled   : function(date) {
 			        	  var today = new Date();
 			        	  if(date.getDay() == 0 || date.getDay() == 6) return true;
+			        	  else if(checkForHolidays(date)) return true;
 			        	  else if(date <= today) return true;
 			        	  else return false;
 	              	},
@@ -122,6 +147,7 @@
 			        	  var stdt=new Date(str.replace("-","/"));
 			        	  var today = new Date();
 			        	  if(date.getDay() == 0 || date.getDay() == 6) return true;
+			        	  else if(checkForHolidays(date)) return true;
 			        	  else if(date <= today) return true;
 			        	  else if(date <= stdt) return true;
 			        	  else return false;
@@ -192,17 +218,17 @@ The facility have reserved.If you want to change facility please check the avail
 <table id="operationtable">
 <tr>
 <td>
-<input type="submit" name="btn_b" value="Back" style="display: inherit;"></td>
+<input class="Pagebutton" type="submit" name="btn_b" value="Back" style="display: inherit;"></td>
 <td>
-<input type="submit" name="btn_u" value="Update" style="display: ${requestScope.u==1?'inherit;':'none;'}"></td>
+<input class="Pagebutton" type="submit" name="btn_u" value="Update" style="display: ${requestScope.u==1?'inherit;':'none;'}"></td>
 <td>
-<input type="submit" name="btn_d" value="Delete" style="display: ${requestScope.d==1?'inherit;':'none;'}"></td>
+<input class="Pagebutton" type="submit" name="btn_d" value="Delete" style="display: ${requestScope.d==1?'inherit;':'none;'}"></td>
 <td>
-<input type="submit" name="btn_a" value="Approve" style="display: ${requestScope.a==1?'inherit;':'none;'}"></td>
+<input class="Pagebutton" type="submit" name="btn_a" value="Approve" style="display: ${requestScope.a==1?'inherit;':'none;'}"></td>
 <td>
-<input type="submit" name="btn_c" value="Cancel" style="display: ${requestScope.c==1?'inherit;':'none;'}"></td>
+<input class="Pagebutton" type="submit" name="btn_c" value="Cancel" style="display: ${requestScope.c==1?'inherit;':'none;'}"></td>
 <td>
-<input type="submit" name="btn_r" value="Reject" style="display: ${requestScope.r==1?'inherit;':'none;'}"></td>
+<input class="Pagebutton" type="submit" name="btn_r" value="Reject" style="display: ${requestScope.r==1?'inherit;':'none;'}"></td>
 </tr>
 </table>
 </form>
