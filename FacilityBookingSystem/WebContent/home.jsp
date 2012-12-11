@@ -11,8 +11,7 @@
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-<body>
-	<div id="wrapper">
+<body><div id="wrapper">
 		<form action="login" method="post">
 			<div id="header">
 				<div id="logo">
@@ -20,29 +19,33 @@
 						<a href="#">Facility Booking System</a>
 					</h1>
 				</div>
-
 				<div id="userInfo">
-					Welcome: ${sessionScope.myUser.userName } <br> Role:
-					${sessionScope.myUser.role } <br>    
+					Welcome: ${sessionScope.myUser.userName } <br /> Role:
+					${sessionScope.myUser.role } <br />    
 					<c:url var="logouturl" scope="page" value="login.jsp">
-						<c:param name="InOut" value="false"></c:param>
+						<c:param name="InOut" value="false" />
 					</c:url>
 					<a href="${logouturl}">Logout</a>
 
 
 				</div>
 			</div>
-
-			<div id="menu">
-
+			
+				
+				<%
+					
+				
+				%>
 				<ul>
-					<c:forEach var="menuItem" items="${sessionScope.menu}">
-						<li><a href="/FacilityBookingSystem/${menuItem}">${menuItem}</a></li>
+			<c:forEach var="i" begin="0" end="4" step="1" >
+					    
+				<li><a href="${menu[i][0]}.jsp"><c:out value="${menu[i][1]}"/></a></li>
+						
 					</c:forEach>
 				</ul>
 				<br class="clearfix" />
-			</div>
+			<div id="menu"></div>
 
 		</form>
-</body>
+	</div></body>
 </html>
