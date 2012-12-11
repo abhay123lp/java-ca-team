@@ -68,7 +68,7 @@
 </head>
 <body>
 <%@ include file="home.jsp"%>
-<div class="wrapper">
+<div id="wrapper">
 <div class="left_content">
 <span class="title_icon"><img alt="" src="images/bookingreport.jpg" width="50px" height="55px"></span>
     <p class="style1"><u>Booking</u></p>
