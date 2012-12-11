@@ -90,8 +90,14 @@
 			<tr>
 				<td colspan=4>
 					<div id="userForm_errorloc" class="error_strings"></div>
-					</td>
+				</td>
 			</tr>
+			<c:if test="${flag==true}">
+				<tr>
+					<td colspan=2><font color="red"><fmt:message
+								key="${flag.error}"></fmt:message></font></td>
+				</tr>
+			</c:if>
 		</table>
 
 
