@@ -20,6 +20,7 @@
 </head>
 <body>
 <%@ include file="home.jsp"%>
+<div id="wrapper">
 <div class="left-content">
 		<table>
 			<tr>
@@ -120,7 +121,7 @@
 				userFormValidator.setAddnlValidationFunction(DoCustomValidation);*/
 		</script>
 
-	
+	</div>
 	<%@include file="Footer.jsp"%>
 </body>
 </html>
