@@ -51,7 +51,7 @@
 		</form>
 		<span class="title_icon"><img alt="" src="images/article_icon.png" width="50px" height="55px" vspace="5"></span>
 		&nbsp;
-<h2><fmt:message key="label.facility"/></h2>
+<h2><u><fmt:message key="label.facility"/></u></h2>
         <c:url var="url" scope="page" value="/FacilitySetupPage.jsp">
         		<c:param name="FacID" value=""/>
         		<c:param name="FacName" value=""/>
