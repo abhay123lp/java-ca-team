@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jasper.compiler.JspUtil.ValidAttribute;
+
 import data.dto.User;
 import exception.NotFoundException;
 
@@ -56,10 +58,33 @@ public class UserProcessServlet extends HttpServlet {
 		user.setContactNo(request.getParameter("ContactNo"));
 		user.setEmailAddress(request.getParameter("EmailAddress"));
 		String ins=(String)request.getParameter("ins");
+		boolean validation=false;
+		request.setAttribute("flag",validation);
+
 		Logger.getLogger(getClass().getName()).log(Level.INFO,"Insert Flag: "+ins);
 		if(ins.equalsIgnoreCase("true"))
 		{
-			um.insertUser(user);
+			try{
+
+				um.insertUser(user);
+			}
+			catch(SQLException e){
+				validation=true;
+				
+			}
+			finally
+			{
+				if(validation==true)
+				{
+					RequestDispatcher rd=request.getRequestDispatcher("/UserProcessServlet");
+					rd.forward(request, response);
+				}
+				else {
+					RequestDispatcher rd=request.getRequestDispatcher("/userLoadPage.jsp");
+					rd.forward(request, response);
+				}
+			}
+
 		}
 		else {
 			um.updateUser(user);
