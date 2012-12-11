@@ -72,19 +72,19 @@ public class login extends HttpServlet {
 						// getUser.getRole());
 						// request.getSession().setAttribute("myUserName",
 						// getUser.getUserName());
-						if (getUser.getRole().equals(
+						if (getUser.getRole().equalsIgnoreCase(
 								EnumUserRole.Administrator.toString())) {
 							menu.add("FacilityCUD");
 							menu.add("FacilityTypeCUD");
 							menu.add("ViewBookingReport");
 							rd = request.getRequestDispatcher("SearchUser.jsp");
-						} else if (getUser.getRole().equals(
+						} else if (getUser.getRole().equalsIgnoreCase(
 								EnumUserRole.Staff.toString())) {
 							menu.add("book");
 							menu.add("SearchFacilities");
 							rd = request
 									.getRequestDispatcher("BookingList.jsp");
-						} else if (getUser.getRole().equals(
+						} else if (getUser.getRole().equalsIgnoreCase(
 								EnumUserRole.Manager.toString())) {
 							menu.add("ViewBooking");
 							menu.add("SearchFacilities");
