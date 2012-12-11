@@ -62,8 +62,9 @@
     <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
+<div id="wrapper">
 <%@ include file="home.jsp"%>
-<div class="wrapper">
+
 	<div class="left_content">
 	<form action="BookingStatusView" method="post">
     <span class="title_icon"><img alt="" src="images/bookingreport.jpg" width="50px" height="55px"></span>
