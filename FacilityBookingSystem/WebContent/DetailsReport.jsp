@@ -6,6 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Details Page</title>
+    <link href="<c:url value='/css/style.css'/>" rel="stylesheet"
+	type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
     <style type="text/css">
         .style1
         {
@@ -64,6 +67,8 @@
     </style>
 </head>
 <body>
+<%@ include file="home.jsp"%>
+<div class="left-content">
 <form action ="ViewBookingReport" method ="post">
     <c:choose>
     <c:when test= "${facility.facID ==null}">
@@ -157,5 +162,7 @@
             </table>
          </p>
     </form>
+    </div>
+   	<%@include file="Footer.jsp"%> 
 </body>
 </html>

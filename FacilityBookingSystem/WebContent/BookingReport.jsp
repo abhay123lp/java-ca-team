@@ -62,67 +62,34 @@
     <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-<div id="wrapper">
-	<form action="login" method="post">
-<div id="header">
-			<div id="logo">
-				<h1>
-					<a href="#">Facility Booking System</a>
-				</h1>
-			</div>
-			
-			<div id="userInfo">
-					Welcome: ${sessionScope.myUser.userName }
-					<br>
-					Role: ${sessionScope.myUser.role }
-					<br>    
-					<c:url var="logouturl" scope="page" value="login.jsp">
-						<c:param name="InOut" value="false"></c:param>
-					</c:url>
-					<a href="${logouturl}">Logout</a>
-					
-					
-			</div>
-		</div>
-	
-		<div id="menu">
-
-			<ul>
-				<c:forEach var="menuItem" items="${sessionScope.menu}">
-					<li><a href="${menuItem}.jsp">${menuItem}</a></li>
-				</c:forEach>
-			</ul>
-			<br class="clearfix" />
-		</div>
-
-	</form>
+<%@ include file="home.jsp"%>
 	<div class="left_content">
-	<form action = "BookingStatusView" method = "post">
+	<form action="BookingStatusView" method="post">
     <span class="title_icon"><img alt="" src="images/bookingreport.jpg" width="50px" height="55px"></span>
     <p class="style1"><u>Booking Report</u></p>
 
     <p class="style1">
-        <table style="width:100%;">
+        </p><table style="width:100%;">
             <tr>
                 <td align="right">
                     <select id="Select1" name="D1">
-                        <option value = "all">all</option>
-                        <option value = "Approve">Approve</option>
-                        <option value = "Processing">Processing</option>
-                        <option value = "Cancel">Cancel</option>
-                        <option value = "Rejected">Rejected</option>
-                        <option value = "DElete">Delete</option>
-                    </select><input id="Submit1" type="submit" value="Search" class="button"/></td>
+                        <option value="all">all</option>
+                        <option value="Approve">Approve</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Cancel">Cancel</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="DElete">Delete</option>
+                    </select><input id="Submit1" type="submit" value="Search" class="button"></td>
             </tr>
         </table>
-    </p>
+    <p></p>
     <p class="style1">
-        <table style="width:800px; border-color: black;">
+        </p><table style="width:800px; border-color: black;">
             <tr>
                 <td align="center" class="style3">
                     BookingID</td>
                 <td align="center" class="style4">
-                    <span class="style2">UserID</td>
+                    <span class="style2">UserID</span></td>
                 <td align="center" class="style5">
                     FacilityID</td>
                 <td align="center" class="style6">
@@ -134,21 +101,21 @@
                 <td align="center" class="style9">
                     Priority</td>
                 <td align="center" class="style10">
-                    Reason</span></td>
+                    Reason<span></span></td>
             </tr>
-            <c:forEach var="booking" items= "${booking}" varStatus="status">
+            <c:forEach var="booking" items="${booking}" varStatus="status">
             	<tr class="style2">
                 	<td align="center" class="style3">
                     	${booking.bookingID}</td>
                 	<td align="center" class="style4">
                     	<c:url var="userurl" scope="page" value="BookingItemsDetails">
-                            <c:param name="userID" value="${booking.userID}"/>
+                            <c:param name="userID" value="${booking.userID}" />
                         </c:url>
                         <a href="${userurl}">${booking.userID}</a>
                     	</td>
                 	<td align="center" class="style5">
                 		<c:url var="facurl" scope="page" value="BookingItemsDetails">
-                            <c:param name="facID" value="${booking.facilityID}"/>
+                            <c:param name="facID" value="${booking.facilityID}" />
                         </c:url>
                         <a href="${facurl}">${booking.facilityID}</a>
                     	</td>
@@ -165,13 +132,9 @@
             </tr>
             </c:forEach>
         </table>
-    </p>
+    <p></p>
 </form>
 </div>
-</div>
-<div id="footer">
-	Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">FCT</a>.
-</div>
-
+<%@ include file="Footer.jsp"%>
 </body>
 </html>

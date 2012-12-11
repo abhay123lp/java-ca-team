@@ -13,7 +13,6 @@
 .even {
 	background-color: #EFFBEF;
 }
-
 .odd {
 	background-color: white;
 }
@@ -37,7 +36,6 @@
 	<div class="left-content">
 		<form action="/FacilityBookingSystem/SearchFacilities" method="post">
 			<div id="page">
-
 				<fieldset>
 					<legend>Search Facility</legend>
 					<c:out value="${error}" />
