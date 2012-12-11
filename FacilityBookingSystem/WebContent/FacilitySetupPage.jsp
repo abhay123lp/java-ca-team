@@ -14,8 +14,6 @@
 <body>
 <%@ include file="home.jsp"%>
 	<div id="wrapper">
-		
-
 		<div class="contact_form">
 			<div class="form_subtitle">Create New Facility</div>
 
