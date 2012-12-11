@@ -34,6 +34,6 @@
 				<br class="clearfix">
 			</div>
 
-		
+		</div>
 </body>
 </html>
