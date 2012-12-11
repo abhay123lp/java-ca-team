@@ -23,7 +23,7 @@
 	<%@ include file="home.jsp"%>
 	<div class="left-content">
 		<form action="/SearchFacilityController" method="post">
-			<div>
+			<div id="page">
 				<fieldset>
 					<legend>Search Facility</legend>
 					<table border="0">
@@ -46,7 +46,7 @@
 					</table>
 				</fieldset>
 			</div>
-			<div>
+			<div id="page">
 				<fieldset>
 					<legend>Search Result</legend>
 					<c:choose>
@@ -85,7 +85,7 @@
 				</fieldset>
 			</div>
 		</form>
-
 	</div>
-</body>
+	
+<%@include file="Footer.jsp"%></body>
 </html>
