@@ -24,38 +24,35 @@
 <body>
 	<%@ include file="home.jsp"%>
 	<div class="wrapper">
-	<div class="left-content">
-		<form action="/FacilityBookingSystem/SearchFacilities" method="post">
-			<div id="page">
-				<fieldset>
-					<legend>Search Facility</legend>
-					<c:out value="${error}" />
-					<table border="0">
-						<tr>
-							<td>Facility Type</td>
-							<td >
-							<select NAME="cboFacilityType">
-									<option value="0">All</option>
-									<c:forEach var="current"
-										items="${facilityAl.get(0).getFacTypeAl()}">
-										<option value="${current.getTypeID()}">${current.getTypeName()}</option>
-									</c:forEach>
-							</td>
-							<td>Facility Capacity</td>
-							<td><input type="text" name="txtCapacity" /></td>
-							<td valign="top"><input type="submit" name="btnSearch"
-								value="Search" alt="Search" class="button" /></td>
+		<div class="left-content">
+			<form action="/FacilityBookingSystem/SearchFacilities" method="post">
+			
+					<fieldset>
+						<legend>Search Facility</legend>
+						<c:out value="${error}" />
+						<table border="0">
+							<tr>
+								<td>Facility Type</td>
+								<td><select NAME="cboFacilityType">
+										<option value="0">All</option>
+										<c:forEach var="current"
+											items="${facilityAl.get(0).getFacTypeAl()}">
+											<option value="${current.getTypeID()}">${current.getTypeName()}</option>
+										</c:forEach></td>
+								<td>Facility Capacity</td>
+								<td><input type="text" name="txtCapacity" /></td>
+								<td valign="top"><input type="submit" name="btnSearch"
+									value="Search" alt="Search" class="button" /></td>
 
-						</tr>
-					</table>					
-				</fieldset>
-			</div>			
-			<div id="page">
-				<fieldset>
-					<legend>Search Result</legend>
-					<c:choose>
-						<c:when test="${!facilityAl.get(0).getFacAl().equals(null)}">
-							<div class="right_content">
+							</tr>
+						</table>
+					</fieldset>
+			
+				
+					<fieldset>
+						<legend>Search Result</legend>
+						<c:choose>
+							<c:when test="${!facilityAl.get(0).getFacAl().equals(null)}">
 								<table>
 									<tr>
 										<td></td>
@@ -75,7 +72,7 @@
 											<c:if test="${status.index!=0 }">
 												<td align="center"><input type="radio" name="group1"
 													value="${current.getFacID()}" /></td>
-											</c:if>											
+											</c:if>
 											<td>${current.getFacName()}
 											<td>${current.getFacUsage()}</td>
 											<td>${current.getFadcilityTypeName()}</td>
@@ -88,16 +85,16 @@
 											name="btnBooking" value="Booking" class="button" /></td>
 									</tr>
 								</table>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<c:out value="No Result Found"></c:out>
-						</c:otherwise>
-					</c:choose>
-				</fieldset>
-			</div>
-		</form>
+
+							</c:when>
+							<c:otherwise>
+								<c:out value="No Result Found"></c:out>
+							</c:otherwise>
+						</c:choose>
+					</fieldset>
+				
+			</form>
+		</div>
 	</div>
-</div>
 	<%@include file="Footer.jsp"%></body>
 </html>

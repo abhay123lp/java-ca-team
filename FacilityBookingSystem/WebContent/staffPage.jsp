@@ -18,7 +18,7 @@
 			</div>
 			<div id="menu">
 				<ul>
-					<li><a href="/FacilityBookingSystem/SearchFacilities.jsp">Make Booking</a></li>
+					<li><a href="/FacilityBookingSystem/SearchFacilities">Make Booking</a></li>
 					<li><a href="/FacilityBookingSystem/BookingList.jsp" >View Booking List</a></li>					
 				</ul>
 				<br class="clearfix" />
