@@ -1,7 +1,7 @@
 package business;
 import java.sql.Date;
 import java.sql.SQLException;
-
+import java.security.Security;
 import java.util.*;
 import exception.BadBookingException;
 
@@ -13,6 +13,8 @@ import data.DAOFactory;
 import data.EnumPriority;
 import data.dto.Booking;
 import java.util.Calendar;
+
+import javax.mail.MessagingException;
 
 
 
@@ -150,7 +152,13 @@ public class BookingManager {
 				s = s.substring(0,8);
 		return "B"+s;
 	}
-		
+	
+	public static void SendMailToManager(String sendTo,String emailMsgTxt) throws MessagingException
+	{
+		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+       new MailSender().sendSSLMessage(sendTo,"Booking Alert",emailMsgTxt);
+		System.out.println("Sucessfully mail sent");
+	}
 	}
 	
 
