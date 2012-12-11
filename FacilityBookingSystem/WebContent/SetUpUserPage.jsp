@@ -139,9 +139,9 @@
 
 
 		&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" align="left"
-			value="Submit">
+			value="Submit" class="button">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="reset" align="left" value="Reset">
+		<input type="reset" align="left" value="Reset" class="button">
 
 	</form>
 
