@@ -33,6 +33,7 @@
 </head>
 <body>
 	<%@ include file="home.jsp"%>
+	<div class="wrapper">
 	<div class="left-content">
 		<form action="/FacilityBookingSystem/SearchFacilities" method="post">
 			<div id="page">
@@ -107,6 +108,6 @@
 			</div>
 		</form>
 	</div>
-
+</div>
 	<%@include file="Footer.jsp"%></body>
 </html>
