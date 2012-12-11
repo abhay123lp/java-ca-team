@@ -4,9 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Error Page</title>
+<style type="text/css">
+        .style1
+        {
+            font-family: "Times New Roman", Times, serif;
+            font-size: xx-large;
+            font-color:Red;
+        }
+        </style>
 </head>
 <body>
-	Error ! Message : ${requestScope.error} !
+<div class="wrapper">
+	<p class="style1">Error ! Message : ${requestScope.error} !</p>
+	</div>
 </body>
 </html>
