@@ -48,7 +48,7 @@ public class BookingManager {
 	{
 		Booking b = null;
 		Booking searchObj=new Booking();
-		searchObj.setUserID(bookingID);
+		searchObj.setBookingID(bookingID);
 		List<Booking> bookList =DAOFactory.getBookingDAO().searchMatching(searchObj);
 		//Booking[] BookArr=(Booking[])bookList.toArray();
 		if(bookList.size()>1){
@@ -56,7 +56,7 @@ public class BookingManager {
 		}
 		if(bookList.size()==1){
 	
-		b=bookList.get(1);
+		b=bookList.get(0);
 		}
 		return b;
 			
