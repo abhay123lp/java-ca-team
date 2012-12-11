@@ -17,7 +17,7 @@
 <body>
 <%@ include file="home.jsp" %>
 <div id="wrapper">
-<form action="/bookConfirm" method="post" name="BookingSucess">
+<form action="ConfirmBooking" method="post" name="ConfirmBooking">
 <c:if test="${empty booking}">Booking is empty!</c:if>
 <table border="1">
 <tr>
