@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css"/>
 <title>Home</title>
-<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <c:if test="${sessionScope.myUser.getRole()==\"Admin\" }"><%@ include file="adminPage.jsp"%></c:if>
 <c:if test="${sessionScope.myUser.getRole()==\"Manage\" }"><%@ include file="manager.jsp"%></c:if>
