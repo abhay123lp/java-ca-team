@@ -18,38 +18,9 @@
 <title>Facility Type Table</title>
 </head>
 <body>
+<%@ include file="home.jsp"%>
 	<div id="wrapper">
-	<form action="login" method="post">
-			<div id="header">
-				<div id="logo">
-					<h1>
-						<a href="#">Facility Booking System</a>
-					</h1>
-				</div>
-
-				<div id="userInfo">
-					Welcome: ${sessionScope.myUser.userName } <br> Role:
-					${sessionScope.myUser.role } <br>    
-					<c:url var="logouturl" scope="page" value="login.jsp">
-						<c:param name="InOut" value="false"></c:param>
-					</c:url>
-					<a href="${logouturl}">Logout</a>
-
-
-				</div>
-			</div>
-
-			<div id="menu">
-
-				<ul>
-					<c:forEach var="menuItem" items="${sessionScope.menu}">
-						<li><a href="/FacilityBookingSystem/${menuItem}">${menuItem}</a></li>
-					</c:forEach>
-				</ul>
-				<br class="clearfix" />
-			</div>
-
-		</form>
+	
 
 		<div class="contact_form">
 			<div class="form_subtitle">Create New Facility Type</div>
@@ -99,7 +70,7 @@
 
 		</div>
 	</div>
-	
+	<%@include file="Footer.jsp"%>
         
 	
 </body>
