@@ -88,6 +88,30 @@
     <url-pattern>/SLoadBookInfo </url-pattern>
   </servlet-mapping>
   <servlet>
+    <description>
+		</description>
+    <display-name>book
+		</display-name>
+    <servlet-name>BookServlet</servlet-name>
+    <servlet-class>controller.BookingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookServlet</servlet-name>
+    <url-pattern>/book</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>
+		</description>
+    <display-name>Confirm
+		</display-name>
+    <servlet-name>ConfirmBooking</servlet-name>
+    <servlet-class>controller.ConfirmBooking</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>ConfirmBooking</servlet-name>
+  <url-pattern>/ConfirmBooking</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>ViewBookingReport</servlet-name>
     <servlet-class>controller.ViewBookingReport</servlet-class>
   </servlet>
@@ -119,28 +143,12 @@
     <servlet-name>DisplayChart</servlet-name>
     <url-pattern>/DisplayChart</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description>
-		</description>
-    <display-name>book
-		</display-name>
-    <servlet-name>BookServlet</servlet-name>
-    <servlet-class>controller.BookingServlet</servlet-class>
+    <servlet>
+    <servlet-name>BookingDateView</servlet-name>
+    <servlet-class>controller.BookingDateView</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>BookServlet</servlet-name>
-    <url-pattern>/book</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description>
-		</description>
-    <display-name>Confirm
-		</display-name>
-    <servlet-name>ConfirmBooking</servlet-name>
-    <servlet-class>controller.ConfirmBooking</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ConfrimBooking</servlet-name>
-    <url-pattern>/bookConfirm</url-pattern>
+    <servlet-name>BookingDateView</servlet-name>
+    <url-pattern>/BookingDateView</url-pattern>
   </servlet-mapping>
 </web-app>
