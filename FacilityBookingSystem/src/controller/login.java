@@ -22,92 +22,103 @@ import exception.NotFoundException;
 @WebServlet("/login")
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request,response);
+	public login() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request,response);
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
 	}
-	
-public void doProcess(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
-	try {
-		RequestDispatcher rd=null;
-		ArrayList<String> menu=new ArrayList<String>();
-		String userID=request.getParameter("userID");
-		String userPSW=request.getParameter("userPSW");
-		String InOut=request.getParameter("InOut");
-		boolean isID=userID==null?false:userID==""?false:true;
-		boolean isPSW=userPSW==null?false:userPSW==""?false:true;
-		if(InOut.equals("true")){
-			if(isID&&isPSW){
-				UserManager uc=new UserManager();
-				User getUser=uc.checkUser(userID, userPSW);		
-				int checkResult=uc.getUserError(userID, userPSW);
-				switch(checkResult){
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
+	}
+
+	public void doProcess(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		try {
+			RequestDispatcher rd = null;
+			ArrayList<String> menu = new ArrayList<String>();
+			String userID = request.getParameter("userID");
+			String userPSW = request.getParameter("userPSW");
+			String InOut = request.getParameter("InOut");
+			boolean isID = userID == null ? false : userID == "" ? false : true;
+			boolean isPSW = userPSW == null ? false : userPSW == "" ? false
+					: true;
+			if (InOut.equals("true")) {
+				if (isID && isPSW) {
+					UserManager uc = new UserManager();
+					User getUser = uc.checkUser(userID, userPSW);
+					int checkResult = uc.getUserError(userID, userPSW);
+					switch (checkResult) {
 					case 1:
 						request.getSession().setAttribute("myUser", getUser);
-//						request.getSession().setAttribute("myUserRole", getUser.getRole());
-//						request.getSession().setAttribute("myUserName", getUser.getUserName());
-						if(getUser.getRole().equals(EnumUserRole.Administrator.toString())){	
+						// request.getSession().setAttribute("myUserRole",
+						// getUser.getRole());
+						// request.getSession().setAttribute("myUserName",
+						// getUser.getUserName());
+						if (getUser.getRole().equals(
+								EnumUserRole.Administrator.toString())) {
 							menu.add("FacilityCUD");
 							menu.add("FacilityTypeCUD");
-							menu.add("ViewBookingReport");					
-							rd=request.getRequestDispatcher("SearchUser.jsp");
-						}
-						else if(getUser.getRole().equals(EnumUserRole.Staff.toString())){
-							menu.add("book");							
-							menu.add("SearchFacilities");					
-							rd=request.getRequestDispatcher("BookingList.jsp");
-						}
-						else if(getUser.getRole().equals(EnumUserRole.Manager.toString())){
+							menu.add("ViewBookingReport");
+							rd = request.getRequestDispatcher("SearchUser.jsp");
+						} else if (getUser.getRole().equals(
+								EnumUserRole.Staff.toString())) {
+							menu.add("book");
+							menu.add("SearchFacilities");
+							rd = request
+									.getRequestDispatcher("BookingList.jsp");
+						} else if (getUser.getRole().equals(
+								EnumUserRole.Manager.toString())) {
 							menu.add("ViewBooking");
 							menu.add("SearchFacilities");
 							menu.add("book");
 							menu.add("ViewBookingReport");
-							rd=request.getRequestDispatcher("ViewBooking");
+							rd = request.getRequestDispatcher("ViewBooking");
 						}
 						request.getSession().setAttribute("menu", menu);
 						break;
 					case 0:
-					case 2: 
-					case 3:request.getSession().setAttribute("loginStatus", checkResult);
-						   rd=request.getRequestDispatcher("login.jsp");
-						   
-						   break;
+					case 2:
+					case 3:
+						request.getSession().setAttribute("loginStatus",
+								checkResult);
+						String er = "login.error";
+						request.setAttribute("error", er);
+						rd = request.getRequestDispatcher("login.jsp");
+
+						break;
+					}
+				} else {
+					rd = request.getRequestDispatcher("login.jsp");
+
 				}
+			} else {
+				request.getSession().removeAttribute("myUser");
+				request.getSession().removeAttribute("myUserRole");
+				rd = request.getRequestDispatcher("login.jsp");
+
 			}
-			else{
-				rd=request.getRequestDispatcher("login.jsp");
-				
-			}
+			rd.forward(request, response);
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
-		else{
-			request.getSession().removeAttribute("myUser");
-			request.getSession().removeAttribute("myUserRole");
-			rd=request.getRequestDispatcher("login.jsp");
-			
-		}
-		rd.forward(request, response);
-	} 
-	catch(Exception ex){
-		ex.printStackTrace();
 	}
-}
 
 }

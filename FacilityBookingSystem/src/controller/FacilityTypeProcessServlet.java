@@ -11,7 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import data.EnumUserRole;
 import data.dto.FacilityType;
+import data.dto.User;
 
 import business.FacilityManager;
 import business.FacilityTypeManager;
@@ -43,28 +45,72 @@ public class FacilityTypeProcessServlet extends javax.servlet.http.HttpServlet
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws SQLException,
 			NotFoundException {
-		if (IsValid(request.getParameter("TypeID"),
-				request.getParameter("Capacity"))) {
+		if (request.getSession().getAttribute("myUser") != null) {
+			User user = new User();
+			user = (User) request.getSession().getAttribute("myUser");
+			if (user.getRole().equals(EnumUserRole.Administrator.toString())) {
+				if (IsValid(request.getParameter("TypeID"),
+						request.getParameter("Capacity"))) {
+					FacilityTypeManager ftm = new FacilityTypeManager();
+					ArrayList<FacilityType> typedata = ftm
+							.findAllFacilityType();
+					request.setAttribute("facilityType", typedata);
+					FacilityType facType = new FacilityType();
+					facType.setTypeID(Integer.parseInt(request
+							.getParameter("TypeID")));
+					facType.setTypeName(request.getParameter("TypeName"));
+					facType.setCapacity(request.getParameter("Capacity"));
+					facType.setDesicription(request.getParameter("Description"));
 
-			FacilityTypeManager ftm = new FacilityTypeManager();
-			FacilityType facType = new FacilityType();
-
-			facType.setTypeID(Integer.parseInt(request.getParameter("TypeID")));
-			facType.setTypeName(request.getParameter("TypeName"));
-			facType.setCapacity(request.getParameter("Capacity"));
-			facType.setDesicription(request.getParameter("Description"));
-
-			String ins = (String) request.getParameter("ins");
-			if (ins.equalsIgnoreCase("true")) {
-				if (IsCheckedFaciltyType(facType)) {
-					ftm.addFacilityType(facType);
+					String ins = (String) request.getParameter("ins");
+					if (ins.equalsIgnoreCase("true")) {
+						if (IsCheckedFaciltyType(facType)) {
+							ftm.addFacilityType(facType);
+							RequestDispatcher rdpt = request
+									.getRequestDispatcher("/FacilityTypeCUD");
+							try {
+								rdpt.forward(request, response);
+							} catch (ServletException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						} else {
+							String error = "Facility name or facility type is already exist";
+							request.setAttribute("error", error);
+							RequestDispatcher rdpt = request
+									.getRequestDispatcher("Error.jsp");
+							try {
+								rdpt.forward(request, response);
+							} catch (ServletException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					} else {
+						ftm.updateFacilityType(facType);
+						RequestDispatcher rdpt = request
+								.getRequestDispatcher("/FacilityTypeCUD");
+						try {
+							rdpt.forward(request, response);
+						} catch (ServletException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 				} else {
-					String error = "Facility name or facility type is already exist";
-					request.setAttribute("error", error);
-					RequestDispatcher rdpt = request
-							.getRequestDispatcher("Error.jsp");
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/login.jsp");
 					try {
-						rdpt.forward(request, response);
+						rd.forward(request, response);
 					} catch (ServletException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -72,22 +118,8 @@ public class FacilityTypeProcessServlet extends javax.servlet.http.HttpServlet
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
 				}
-			} else {
-				ftm.updateFacilityType(facType);
-			}
-			ArrayList<FacilityType> typedata = ftm.findAllFacilityType();
-			request.setAttribute("facilityType", typedata);
-			RequestDispatcher rdpt = request
-					.getRequestDispatcher("/FacilityTypeCUD");
-			try {
-				rdpt.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 
