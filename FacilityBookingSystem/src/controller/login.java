@@ -73,41 +73,40 @@ public class login extends HttpServlet {
 						request.getSession().setAttribute("myUser", getUser);					
 						if (getUser.getRole().equals(
 								EnumUserRole.Administrator.toString())) {
-							menuarr[0][0]="Facility CUD";
-							menuarr[0][1]="FacilityCUD";
-							menuarr[1][0]="Facility TypeCUD";
-							menuarr[1][1]="FacilityTypeCUD";
-							menuarr[2][0]="View Booking Report";
-							menuarr[2][1]="ViewBookingReport";
-							menuarr[3][0]="Search User";
-							menuarr[3][1]="SearchUser.jsp";
+//							menuarr[0][0]="Facility CUD";
+//							menuarr[0][1]="FacilityCUD";
+//							menuarr[1][0]="Facility TypeCUD";
+//							menuarr[1][1]="FacilityTypeCUD";
+//							menuarr[2][0]="View Booking Report";
+//							menuarr[2][1]="ViewBookingReport";
+//							menuarr[3][0]="Search User";
+//							menuarr[3][1]="SearchUser.jsp";
 //							menu.add("FacilityCUD");
 //							menu.add("FacilityTypeCUD");
 //							menu.add("ViewBookingReport");
 							rd = request.getRequestDispatcher("SearchUser.jsp");
 						} else if (getUser.getRole().equals(
 								EnumUserRole.Staff.toString())) {	
-							menuarr[4][0]="Make Booking";
-							menuarr[4][1]="SearchFacilities";
-							menuarr[5][0]="View Booking List";
-							menuarr[5][1]="BookingList.jsp";
+//							menuarr[4][0]="Make Booking";
+//							menuarr[4][1]="SearchFacilities";
+//							menuarr[5][0]="View Booking List";
+//							menuarr[5][1]="BookingList.jsp";
 							//menu.add("SearchFacilities");
-							rd = request
-									.getRequestDispatcher("BookingList.jsp");
+							rd = request.getRequestDispatcher("BookingList.jsp");
 						} else if (getUser.getRole().equals(
 								EnumUserRole.Manager.toString())) {
-							menuarr[6][0]="View Booking List";
-							menuarr[6][1]="BookingList.jsp";
-							menuarr[7][0]="Make Booking";
-							menuarr[7][1]="SearchFacilities";
-							menuarr[8][0]="ViewBookingReport";
-							menuarr[8][1]="View Booking Report";
+//							menuarr[6][0]="View Booking List";
+//							menuarr[6][1]="BookingList.jsp";
+//							menuarr[7][0]="Make Booking";
+//							menuarr[7][1]="SearchFacilities";
+//							menuarr[8][0]="ViewBookingReport";
+//							menuarr[8][1]="View Booking Report";
 //							menu.add("ViewBooking");
 //							menu.add("SearchFacilities");						
 //							menu.add("ViewBookingReport");
 							rd = request.getRequestDispatcher("BookingList.jsp");
 						}
-						request.getSession().setAttribute("menu", menuarr);
+						//request.getSession().setAttribute("menu", menuarr);
 						break;
 					case 0:
 					case 2:
