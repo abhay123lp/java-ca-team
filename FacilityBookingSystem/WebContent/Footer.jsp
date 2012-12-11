@@ -7,6 +7,7 @@
 <title></title>
 </head>
 <body>
+</div>
 	<div id="footer">
 	Copyright (c) 2012 Sitename.com. All rights reserved. Design by
 	<a href="http://www.freecsstemplates.org"></a>

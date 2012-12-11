@@ -6,12 +6,10 @@
 <link href="<c:url value='/css/style.css'/>" rel="stylesheet"
 	type="text/css" />
 <title></title>
-<link rel="stylesheet" type="text/css" href="style.css" />
 <title></title>
 </head>
 <body>
 	<div id="wrapper">
-		<form action="login" method="post">
 			<div id="header">
 				<div id="logo">
 					<h1>
@@ -19,8 +17,8 @@
 					</h1>
 				</div>
 				<div id="userInfo">
-					Welcome: ${sessionScope.myUser.userName } <br /> Role:
-					${sessionScope.myUser.role } <br />    
+					Welcome: ${sessionScope.myUser.userName } <br> Role:
+					${sessionScope.myUser.role } <br>    
 					<c:url var="logouturl" scope="page" value="login.jsp">
 						<c:param name="InOut" value="false" />
 					</c:url>
@@ -30,13 +28,12 @@
 			<div id="menu">
 				<ul>
 					<li><a href="/FacilityBookingSystem/BookingList.jsp">View Booking List</a></li>
-					<li><a href="/FacilityBookingSystem/SearchFacilities" />Make Booking</li>		
-						<li><a href="/FacilityBookingSystem/ViewBookingReport" />View Booking Report</li>				
+					<li><a href="/FacilityBookingSystem/SearchFacilities"></a>Make Booking</li>		
+						<li><a href="/FacilityBookingSystem/ViewBookingReport"></a>View Booking Report</li>				
 				</ul>
-				<br class="clearfix" />
+				<br class="clearfix">
 			</div>
 
-		</form>
-	</div>
+		
 </body>
 </html>
