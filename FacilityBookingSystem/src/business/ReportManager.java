@@ -12,12 +12,16 @@ public class ReportManager {
 	private UserDAO userDAO;
 	private FacilityDAO facilityDAO;
 	private FacilityTypeDAO facilityTypeDAO;
+	private UsageDAO usageDAO;
+	private DateUsageDAO dateUsageDAO;
 	public ReportManager ()
 	{
 		bookingDAO =  DAOFactory.getBookingDAO();
 		userDAO = DAOFactory.getUserDAO();
 		facilityDAO = DAOFactory.getFacilityDAO();
 		facilityTypeDAO = DAOFactory.getFacilityTypeDAO();
+		usageDAO = DAOFactory.getUsageDAO();
+		dateUsageDAO = DAOFactory.getDateUsageDAO();
 	}
 	public List<Booking> getallbooking()
 	{
@@ -92,5 +96,43 @@ public class ReportManager {
 		}
 		return facilityType;
 	}
+	
+	public List<Usage> getallbookingusagebyuserID(String userID)
+	{
+		List<Usage> usage =  new ArrayList<Usage>();
+		try{
+			usage =  usageDAO.countgroupbyfacilityusinguserid(userID);
+		}
+		catch(SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return usage;
+	}
+	
+	public List<Usage> getallbookingusagebyuserIDanddate(String userID,String tyear,String tmonth)
+	{
+		List<Usage> usage =  new ArrayList<Usage>();
+		try{
+			usage =  usageDAO.countgroupbyfacilityusinguseridanddate(userID, tyear, tmonth);
+		}
+		catch(SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return usage;
+	}
 
+	public List<DateUsage> getalldatebyuserID(String userID)
+	{
+		List<DateUsage> dateUsage =  new ArrayList<DateUsage>();
+		try{
+			dateUsage =  dateUsageDAO.yearandmonth(userID);
+		}
+		catch(SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dateUsage;
+	}
 }
