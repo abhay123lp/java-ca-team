@@ -45,53 +45,52 @@ public class FacilityTypeProcessServlet extends javax.servlet.http.HttpServlet
 			NotFoundException {
 		if (IsValid(request.getParameter("TypeID"),
 				request.getParameter("Capacity"))) {
+
 			FacilityTypeManager ftm = new FacilityTypeManager();
 			FacilityType facType = new FacilityType();
+
 			facType.setTypeID(Integer.parseInt(request.getParameter("TypeID")));
 			facType.setTypeName(request.getParameter("TypeName"));
 			facType.setCapacity(request.getParameter("Capacity"));
 			facType.setDesicription(request.getParameter("Description"));
-			if (IsCheckedFaciltyType(facType)) {
-				String ins = (String) request.getParameter("ins");
-				if (ins.equalsIgnoreCase("true")) {
+
+			String ins = (String) request.getParameter("ins");
+			if (ins.equalsIgnoreCase("true")) {
+				if (IsCheckedFaciltyType(facType)) {
 					ftm.addFacilityType(facType);
-					List<FacilityType> listFacility = new ArrayList<FacilityType>();
-					listFacility = ftm.getAllFacilityType();
-					request.getSession().setAttribute("facilitytypeid",
-							listFacility);
 				} else {
-					ftm.updateFacilityType(facType);
-				}
-				ArrayList<FacilityType> typedata = ftm.findAllFacilityType();
-				request.setAttribute("facilityType", typedata);
-				RequestDispatcher rdpt = request
-						.getRequestDispatcher("FacilityTypeCUD.jsp");
-				try {
-					rdpt.forward(request, response);
-				} catch (ServletException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					String error = "Facility name or facility type is already exist";
+					request.setAttribute("error", error);
+					RequestDispatcher rdpt = request
+							.getRequestDispatcher("Error.jsp");
+					try {
+						rdpt.forward(request, response);
+					} catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			} else {
-				String error = "Facility name or facility type is already exist";
-				request.setAttribute("error", error);
-				RequestDispatcher rdpt = request
-						.getRequestDispatcher("FacilityTypeSetUpPage.jsp");
-				try {
-					rdpt.forward(request, response);
-				} catch (ServletException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				ftm.updateFacilityType(facType);
 			}
-
+			ArrayList<FacilityType> typedata = ftm.findAllFacilityType();
+			request.setAttribute("facilityType", typedata);
+			RequestDispatcher rdpt = request
+					.getRequestDispatcher("/FacilityTypeCUD");
+			try {
+				rdpt.forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+
 	}
 
 	protected boolean IsValid(String typeID, String Capacity) {

@@ -35,27 +35,30 @@ public class FacilityTypeLoadData extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		processRequest(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		processRequest(request,response);
 	}
 	
-	private void processRequest(HttpServletRequest request,HttpServletResponse response) {
+	private void processRequest(HttpServletRequest request,
+			HttpServletResponse response) {
 
 		if (request.getSession().getAttribute("myUser") != null) {
 			User user = new User();
 			user = (User) request.getSession().getAttribute("myUser");
-			if (user.getRole() == EnumUserRole.Administrator.toString()) {
+			if (user.getRole().equals(EnumUserRole.Administrator.toString())) {
+				
 				FacilityTypeManager ftm = new FacilityTypeManager();
 				ArrayList<FacilityType> typedata = ftm.findAllFacilityType();
 				request.setAttribute("facilityType", typedata);
+				
 				RequestDispatcher rdpt = request
-						.getRequestDispatcher("/FacilityTypeCUD.jsp");
+						.getRequestDispatcher("FacilityTypeCUD.jsp");
 				try {
 					rdpt.forward(request, response);
 				} catch (ServletException se) {

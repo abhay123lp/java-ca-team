@@ -53,7 +53,7 @@ public class FacilityDeleteSevlet extends HttpServlet {
 		ArrayList<Facility> data = fm.findAllFacility();
 		request.setAttribute("facility", data);
 		RequestDispatcher rd = request
-				.getRequestDispatcher("/FacilityLoadData");
+				.getRequestDispatcher("/FacilityCUD.jsp");
 		rd.forward(request, response);
 	}
 
