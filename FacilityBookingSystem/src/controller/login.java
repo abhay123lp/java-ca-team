@@ -57,8 +57,7 @@ public void doProcess(HttpServletRequest request,HttpServletResponse response) t
 		if(InOut.equals("true")){
 			if(isID&&isPSW){
 				UserManager uc=new UserManager();
-				User getUser=uc.checkUser(userID, userPSW);
-				//menu.add("View Current Bookings");
+				User getUser=uc.checkUser(userID, userPSW);		
 				int checkResult=uc.getUserError(userID, userPSW);
 				switch(checkResult){
 					case 1:
@@ -67,30 +66,21 @@ public void doProcess(HttpServletRequest request,HttpServletResponse response) t
 //						request.getSession().setAttribute("myUserName", getUser.getUserName());
 						if(getUser.getRole().equals(EnumUserRole.Administrator.toString())){	
 							menu.add("FacilityCUD");
-							//menu.add("Maintain Facilities");
 							menu.add("FacilityTypeCUD");
-							menu.add("BookingReport");
-							menu.add("SearchUser");							
-							rd=request.getRequestDispatcher("home.jsp");
+							menu.add("ViewBookingReport");					
+							rd=request.getRequestDispatcher("SearchUser.jsp");
 						}
 						else if(getUser.getRole().equals(EnumUserRole.Staff.toString())){
-							menu.add("MakeBooking");
-							menu.add("BookingList");
-							menu.add("SearchFacilities");
-//							menu.add("Cancel An approved booking");
-//							menu.add("Email booking status");
-						rd=request.getRequestDispatcher("home.jsp");
+							menu.add("book");							
+							menu.add("SearchFacilities");					
+							rd=request.getRequestDispatcher("BookingList.jsp");
 						}
 						else if(getUser.getRole().equals(EnumUserRole.Manager.toString())){
 							menu.add("ViewBooking");
 							menu.add("SearchFacilities");
-							menu.add("MakeBooking");
-							menu.add("BookingReport");
-//							menu.add("Email booking status");
-//							menu.add("View pending requests");
-//							menu.add("Approve/Reject booking");
-//							menu.add("View/Print Monthly Usage");
-							rd=request.getRequestDispatcher("home.jsp");
+							menu.add("book");
+							menu.add("ViewBookingReport");
+							rd=request.getRequestDispatcher("ViewBooking");
 						}
 						request.getSession().setAttribute("menu", menu);
 						break;
