@@ -7,7 +7,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<fmt:setBundle basename="messagetitle" />
+<fmt:setBundle basename="messages" />
 <title><fmt:message key="title" /></title>
 <script language="JavaScript" src="script/gen_validatorv4.js"
 	type="text/javascript"></script>
@@ -43,6 +43,12 @@
 						<div id='loginform_errorloc' class="error_strings"></div>
 					</td>
 				</tr>
+				<c:if test="${not empty error }">
+					<tr>
+						<td colspan=4><font color="red"> <fmt:message
+									key="${error}"></fmt:message></font></td>
+					</tr>
+				</c:if>
 
 			</table>
 			<input type="submit" value="Login" /> <input type="reset"
@@ -54,13 +60,16 @@
 		var loginformValidator = new Validator("loginform");
 		loginformValidator.EnableOnPageErrorDisplaySingleBox();
 		loginformValidator.EnableMsgsTogether();
-		
+
 		loginformValidator.addValidation("userID", "req",
 				"Please fill in UserID");
+
+		loginformValidator.addValidation("userPSW", "req",
+				"Please fill in user password");
 		loginformValidator.addValidation("userID", "minlen",
 				"UserID minnum is 7");
-		loginformValidator.addValidation("userPSW", "req ",
-				"Please fill in user password");
+		loginformValidator.addValidation("userID", "alnum",
+				"UserID minnum should be alphanumeric");
 	</script>
 
 </body>
