@@ -16,6 +16,7 @@
 </head>
 <body>
 <%@ include file="home.jsp" %>
+<div class="wrapper">
 <form action="/bookConfirm" method="post" name="BookingSucess">
 <c:if test="${empty booking}">Booking is empty!</c:if>
 <table border="1">
@@ -65,6 +66,7 @@ ${booking.priority}</td></tr>
 <input type="hidden" id="reason" name="reason" value="${booking.reason}"/>
 
 </form>
+</div>
 <%@ include file="Footer.jsp" %>
 <script language="JavaScript" type='text/javascript'>
 userFormValidator.addValidation("mgrID", "req",
