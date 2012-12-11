@@ -14,74 +14,69 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="<c:url value='css/style.css'/>" rel="stylesheet"
 	type="text/css" />
-<link rel="stylesheet" type="text/css" href="style.css"/>
 <fmt:setBundle basename="messages" />
 <title><fmt:message key="user.title" /></title>
-
 </head>
 <body>
-<%@ include file="home.jsp"%>
-<div id="wrapper">
-		
-	<h1>
-		<fmt:message key="label.User" />
-	</h1>
-	<c:url var="url" scope="page" value="/SetUpUserPage.jsp">
-		<c:param name="UserID" value="" />
-		<c:param name="UserPSW" value="" />
-		<c:param name="UserName" value="" />
-		<c:param name="Role" value="" />
-		<c:param name="ContactNo" value="" />
-		<c:param name="EmailAddress" value="" />
-		<c:param name="insert" value="true" />
-	</c:url>
-	<a href="${url}"><fmt:message key="label.User.add" /></a>
-	<br />
-	<br />
-	<table class="borderAll">
-		<tr>
-			<th width="%10">#</th>
-			<th><fmt:message key="label.User.UserID" /></th>
-			<th><fmt:message key="label.User.UserPSW" /></th>
-			<th><fmt:message key="label.User.UserName" /></th>
-			<th><fmt:message key="label.User.Role" /></th>
-			<th><fmt:message key="label.User.ContactNo" /></th>
-			<th><fmt:message key="label.User.EmailAddress" /></th>
-			<th><fmt:message key="label.User.edit" /> <fmt:message
-					key="label.User.delete" /></th>
-		</tr>
-
-		<c:forEach var="User" items="${UserTable}" varStatus="status">
-			<tr class="${status.index%2==0?'even':'odd' }">
-				<td class="nowrap">${status.index+1}</td>
-				<td class="norwrap">${User.userID}</td>
-				<td class="norwrap">${User.userPSW}</td>
-				<td class="norwrap">${User.userName}</td>
-				<td class="norwrap">${User.role}</td>
-				<td class="norwrap">${User.contactNo}</td>
-				<td class="norwrap">${User.emailAddress}</td>
-				<td class="norwrap"><c:url var="updurl" scope="page"
-						value="/SetUpUserPage.jsp">
-						<c:param name="UserID" value="${User.userID}" />
-						<c:param name="UserPSW" value="${User.userPSW}" />
-						<c:param name="UserName" value="${User.userName}" />
-						<c:param name="Role" value="${User.role}" />
-						<c:param name="ContactNo" value="${User.contactNo}" />
-						<c:param name="EmailAddress" value="${User.emailAddress}" />
-						<c:param name="update" value="true" />
-
-					</c:url> <a href="${updurl}  "><fmt:message key="label.User.edit" /></a>
-					&nbsp;&nbsp;&nbsp; <c:url var="delurl" scope="page"
-						value="/deleteUser">
-						<c:param name="UserID" value="${User.userID}" />
-					</c:url> <a href="${delurl}"><fmt:message key="label.User.delete" /></a></td>
-
+	<%@ include file="home.jsp"%>
+	<div id="wrapper">
+		<h1>
+			<fmt:message key="label.User" />
+		</h1>
+		<c:url var="url" scope="page" value="/SetUpUserPage.jsp">
+			<c:param name="UserID" value="" />
+			<c:param name="UserPSW" value="" />
+			<c:param name="UserName" value="" />
+			<c:param name="Role" value="" />
+			<c:param name="ContactNo" value="" />
+			<c:param name="EmailAddress" value="" />
+			<c:param name="insert" value="true" />
+		</c:url>
+		<a href="${url}"><fmt:message key="label.User.add" /></a> <br /> <br />
+		<table class="borderAll">
+			<tr>
+				<th width="%10">#</th>
+				<th><fmt:message key="label.User.UserID" /></th>
+				<th><fmt:message key="label.User.UserPSW" /></th>
+				<th><fmt:message key="label.User.UserName" /></th>
+				<th><fmt:message key="label.User.Role" /></th>
+				<th><fmt:message key="label.User.ContactNo" /></th>
+				<th><fmt:message key="label.User.EmailAddress" /></th>
+				<th><fmt:message key="label.User.edit" /> <fmt:message
+						key="label.User.delete" /></th>
 			</tr>
-		</c:forEach>
-	</table>
 
-        </div>
-        <%@include file="Footer.jsp"%>
+			<c:forEach var="User" items="${UserTable}" varStatus="status">
+				<tr class="${status.index%2==0?'even':'odd' }">
+					<td class="nowrap">${status.index+1}</td>
+					<td class="norwrap">${User.userID}</td>
+					<td class="norwrap">${User.userPSW}</td>
+					<td class="norwrap">${User.userName}</td>
+					<td class="norwrap">${User.role}</td>
+					<td class="norwrap">${User.contactNo}</td>
+					<td class="norwrap">${User.emailAddress}</td>
+					<td class="norwrap"><c:url var="updurl" scope="page"
+							value="/SetUpUserPage.jsp">
+							<c:param name="UserID" value="${User.userID}" />
+							<c:param name="UserPSW" value="${User.userPSW}" />
+							<c:param name="UserName" value="${User.userName}" />
+							<c:param name="Role" value="${User.role}" />
+							<c:param name="ContactNo" value="${User.contactNo}" />
+							<c:param name="EmailAddress" value="${User.emailAddress}" />
+							<c:param name="update" value="true" />
+
+						</c:url> <a href="${updurl}  "><fmt:message key="label.User.edit" /></a>
+						&nbsp;&nbsp;&nbsp; <c:url var="delurl" scope="page"
+							value="/deleteUser">
+							<c:param name="UserID" value="${User.userID}" />
+						</c:url> <a href="${delurl}"><fmt:message key="label.User.delete" /></a></td>
+
+				</tr>
+			</c:forEach>
+		</table>
+
+	</div>
+	<%@include file="Footer.jsp"%>
 
 </body>
 </html>
