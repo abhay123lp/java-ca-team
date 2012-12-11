@@ -118,14 +118,14 @@
 				</c:if>
 			</table>
 
-			<input align="middle" type='image' name='Submit' id='userSubmit'
+			<%-- <input align="middle" type='image' name='Submit' id='userSubmit'
 				src='images/SubmitButton.png' alt='submit' class='loading_div' /> <input
 				align="middle" type='image' name='Reset' id='userRest'
-				src='images/ResetButton.png' alt='reset' />
-			<%--
+				src='images/ResetButton.png' alt='reset' />--%>
+			
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="reset" value="Reset">--%>
+		<input type="reset" value="Reset">
 		</center>
 		</div>
 	</form>
