@@ -78,8 +78,8 @@ public class SearchFacilityController extends HttpServlet {
 		if (request.getSession().getAttribute("myUser") != null) {
 			User user = new User();
 			user = (User) request.getSession().getAttribute("myUser");
-			if (user.getRole() == EnumUserRole.Staff.toString()
-					|| user.getRole() == EnumUserRole.Manager.toString()) {
+			if (user.getRole().equals(EnumUserRole.Staff.toString())
+					|| user.getRole().equals(EnumUserRole.Manager.toString())) {
 				String searchbtnClick = request.getParameter("btnSearch");
 				String bookingClick = request.getParameter("btnBooking");
 

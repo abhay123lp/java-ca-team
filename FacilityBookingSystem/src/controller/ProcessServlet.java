@@ -51,17 +51,34 @@ public class ProcessServlet extends javax.servlet.http.HttpServlet implements
 				facility.setFacUsage(request.getParameter("FacUsage"));
 				facility.setTypeID(Integer.parseInt(request
 						.getParameter("cboFacilityType")));
-				if (IsCheckedFacilty(facility)) {
+				if (IsCheckedNull(facility)) {
+
 					String ins = (String) request.getParameter("ins");
 					if (ins.equalsIgnoreCase("true")) {
-						fm.insertFacility(facility);
+						if (IsCheckedFacilty(facility)) {
+							fm.insertFacility(facility);
+						} else {
+							String error = "Facitly ID and Facility Name is already exist.";
+							request.setAttribute("error", error);
+							RequestDispatcher rdp = request
+									.getRequestDispatcher("Error.jsp");
+							try {
+								rdp.forward(request, response);
+							} catch (ServletException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 					} else {
 						fm.updateFacility(facility);
 					}
 					ArrayList<Facility> data = fm.findAllFacility();
 					request.setAttribute("facility", data);
 					RequestDispatcher rdp = request
-							.getRequestDispatcher("FacilityCUD.jsp");
+							.getRequestDispatcher("/FacilityLoadData");
 					try {
 						rdp.forward(request, response);
 					} catch (ServletException e) {
@@ -69,11 +86,7 @@ public class ProcessServlet extends javax.servlet.http.HttpServlet implements
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-				} else {
-					String error = "Facitly ID and Facility Name is already exist.";
-					request.setAttribute("error", error);
-					RequestDispatcher rdp = request
-							.getRequestDispatcher("FacilitySetUpPage.jsp");
+
 				}
 
 			}
@@ -85,11 +98,14 @@ public class ProcessServlet extends javax.servlet.http.HttpServlet implements
 		boolean flag1 = false;
 		boolean flag2 = false;
 		String regex = "[0-9]+";
+		String regex1 = "F[0-9]+";
 		Pattern p = Pattern.compile(regex);
-		if (p.matcher(facID).matches()) {
+		Pattern p1 = Pattern.compile(regex1);
+		if (p1.matcher(facID).matches()) {
 			flag1 = true;
 		}
 		if (p.matcher(FacUsage).matches()) {
+			;
 
 			flag2 = true;
 		}
@@ -108,5 +124,12 @@ public class ProcessServlet extends javax.servlet.http.HttpServlet implements
 			flag = false;
 		}
 		return flag;
+	}
+
+	protected boolean IsCheckedNull(Facility f) {
+		if (f.getFacID() != null && f.getFacName() != null) {
+			return true;
+		} else
+			return false;
 	}
 }
