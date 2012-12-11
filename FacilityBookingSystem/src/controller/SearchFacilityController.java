@@ -88,11 +88,11 @@ public class SearchFacilityController extends HttpServlet {
 					PageRedirect(request, response);
 				} else {
 					if (searchbtnClick != null) {
-						if (searchbtnClick.equals("search")) {
+						if (searchbtnClick.equals("Search")) {
 							searchButtonClick(request, response);
 							searchbtnClick = null;
 						}
-					} else if (bookingClick.equals("booking")) {
+					} else if (bookingClick.equals("Booking")) {
 						bookingbuttonClick(request, response);
 					}
 				}
