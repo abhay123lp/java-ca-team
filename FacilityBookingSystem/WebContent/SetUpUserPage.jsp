@@ -20,9 +20,6 @@
 	type="text/javascript"></script>
 <link href="<c:url value='css/style.css'/>" rel="stylesheet"
 	type="text/css" />
-<link rel="stylesheet" type="text/css" href="style.css"/>
-
-
 </head>
 <body>
 	<%@ include file="home.jsp"%>
